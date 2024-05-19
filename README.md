@@ -60,3 +60,12 @@ for Ubuntu
 
 If you need rust installed as well, please findout in the whisper github https://github.com/openai/whisper
 
+1-3. ko-sentence-transformers
+
+To install, use pip:
+
+For more information please look at https://github.com/jhgan00/ko-sentence-transformers
+
+```pip install -U sentence-transformers```
+
+they recommend Python 3.8 or higher, and at least PyTorch 1.11.0
