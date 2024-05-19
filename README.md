@@ -41,6 +41,10 @@ We used whisper model developed by OpenAI repectively, https://github.com/openai
 
 Although whisper is developed in Python 3.9.9 and PyTorch 1.10.1, fortunatley Python 3.8.10 and PyTorch 2.3.0 is also runnable
 
+And thanks to OpenAI, it is also runnable in Python 3.8.10 and PyTorch 1.11
+
+So, we donot need to update any of them!
+
 for setup,
 
 ```pip install git+https://github.com/openai/whisper.git```
