@@ -15,13 +15,17 @@ Used Modelscope which is from here
 https://github.com/modelscope/modelscope
 
 we used anaconda for creating local python environment
+
 ```conda create -n modelscope python=3.8```
+
 ```conda activate modelscope```
 
 For using modelscope framework, install the core modelscope components:
 
 ```pip install modelscope```
+
 or
+
 ```pip install modelscope[audio] -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html```
 
 We used FRCRN which is developed by Alibaba https://github.com/alibabasglab/FRCRN
@@ -33,6 +37,7 @@ This model has a problem in above PyTorch v1.11
 for linux install libsndfile1
 
 ```sudo apt-get update```
+
 ```sudo apt-get install libsndfile1```
 
 1-2. Speech to Text
@@ -56,6 +61,7 @@ To update the package to the latest version of this repository, run:
 The whisper also requires the command-line tool ffmpeg:
 
 for Ubuntu
+
 ```sudo apt install ffmpeg```
 
 If you need rust installed as well, please findout in the whisper github https://github.com/openai/whisper
@@ -68,4 +74,4 @@ For more information please look at https://github.com/jhgan00/ko-sentence-trans
 
 ```pip install -U sentence-transformers```
 
-they recommend Python 3.8 or higher, and at least PyTorch 1.11.0
+they recommend Python 3.8 or higher, at least PyTorch 1.11.0, and transformers 4.32.0 or higher
