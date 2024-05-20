@@ -75,8 +75,8 @@ If you need ```rust``` installed as well, please findout in the whisper github h
 
 * To install, use pip:
 
-      > For more information please look at https://github.com/jhgan00/ko-sentence-transformers
-
         pip install -U sentence-transformers
 
-      > they recommend **Python 3.8 or higher**, at least **PyTorch 1.11.0**, and **transformers 4.32.0 or higher**
+* For more information please look at https://github.com/jhgan00/ko-sentence-transformers
+
+* they recommend **Python 3.8 or higher**, at least **PyTorch 1.11.0**, and **transformers 4.32.0 or higher**
