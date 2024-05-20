@@ -1,5 +1,5 @@
 # Tomato
-TOMATO: For Barrier Free Movie Automatic Description
+TOMATO: For Barrier Free Movie auTOMAtic descripTiOn
 
 0. Introduction
 
