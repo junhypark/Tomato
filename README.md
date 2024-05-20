@@ -1,13 +1,13 @@
 # Tomato
 TOMATO: For Barrier Free Movie auTOMAtic descripTiOn
 
-0. Introduction
+## 0. Introduction
 
-1. Models
+## 1. Models
 
 environments: Ubuntu 20.04 LTS
 
-1-1. Denoise
+### 1-1. Denoise
 
 We need a new virtual environment
 
@@ -40,7 +40,7 @@ for linux install libsndfile1
 
 ```sudo apt-get install libsndfile1```
 
-1-2. Speech to Text
+### 1-2. Speech to Text
 
 We used whisper model developed by OpenAI repectively, https://github.com/openai/whisper
 
@@ -66,7 +66,7 @@ for Ubuntu
 
 If you need rust installed as well, please findout in the whisper github https://github.com/openai/whisper
 
-1-3. ko-sentence-transformers
+### 1-3. ko-sentence-transformers
 
 To install, use pip:
 
