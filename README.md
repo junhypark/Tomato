@@ -51,7 +51,7 @@ https://github.com/modelscope/modelscope
 
 * And thanks to **OpenAI**, it is also runnable in **Python 3.8.10** and **PyTorch 1.11**
 
-### So, we donot need to update any of them!
+### So, we do not need to update any of them!
 
 * for setup,
 
