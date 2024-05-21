@@ -3,6 +3,7 @@ import sts
 import stt
 import pickle
 import sys
+import translate_file
 
 def save(result, result2=None):
     with open('temp_list.pkl', 'wb') as f:
@@ -13,8 +14,17 @@ def main(args):
     if len(args) > 2:
         sys.exit("Wrong Arguments Numbers")
 
-    print("Enter the input file")
-    path = input()
+    print("Enter the input video file")
+    video_path = input()
+    
+    print("\n Enter the input docx file")
+    docx_path = input()
+
+    print("\n Enter the name of wav file")
+    audio_path = input()
+
+    # open docx and wav
+    path, docx = translate_file.main(video_file=video_path, audio_file=audio_path, docx_file=docx_path)
 
     print("\nDenoising is running...")
     first_path = denoise.main(path)
@@ -34,7 +44,7 @@ def main(args):
             save(dialogues, result2=dialoguesList)
 
     print("\nChecking Similarities...")
-    sts.__main__(dialogues)
+    sts.main(dialogues, docx)
 
 if __name__ == '__main__':
     main(sys.argv)
