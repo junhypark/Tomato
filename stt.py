@@ -1,43 +1,35 @@
 import whisper
+from pydub import AudioSegment
+import os
 
-# Whisper 모델 로드
-def trans(path):
-    model = whisper.load_model("medium")
-    
-    result = model.transcribe(path, no_speech_threshold=0.6, language='korean')
-    
-    rawText = result["text"]
-    result = reconstruct(result["segments"])
-    return rawText, result
+# wav split with time of pyannote
+def split_wav(timestamp, path):
+    audio = AudioSegment.from_wav(path)
 
-def reconstruct(massy):
-    # result (list) = {'id': 0,                                                 불필요
-    # 'seek': 3000,                                                             불필요
-    # 'start': 30.0,                                                            필요
-    # 'end': 32.0,                                                              필요
-    # 'text': ' 영업 1팀으로 가세요.',                                              필요
-    # 'tokens': [50364, 9293, 11534, 502, 169, 3638, 4130, 4147, 7046, 13, 50464], 불?
-    # 'temperature': 0.0,                                                       불필요
-    # 'avg_logprob': -0.48073904330913836,                                      불필요
-    # 'compression_ratio': 0.9747899159663865,                                  불?
-    # 'no_speech_prob': 0.037632815539836884}                                   불필요?
+    result = list()
 
-    # 일단 start, end, text, no_speech_prob, compression_ratio만 넣어놓음
-    # 마지막 두개는 그저 확인용
-    result = list()    
-
-    for dic in massy:
-        temp = dict()
-        temp["start"] = dic["start"]
-        temp["end"] = dic["end"]
-        temp["text"] = dic["text"]
-        temp["com_ratio"] = dic["compression_ratio"]
-        temp["no_speech"] = dic["no_speech_prob"]
-        result.append(temp)
-    
+    for i in timestamp:
+        t1 = i["start"] * 1000
+        t2 = i["end"] * 1000
+        split_audio = audio[t1:t2]
+        split_audio.export('./temp'+str(t1)+'.wav', format="wav")
+        result.append({"path":'./temp'+str(t1)+'.wav', "t1": t1/1000, "t2": t2/1000})
+        
     return result
 
+# Whisper 모델 로드
+def trans(result):
+    model = whisper.load_model("medium")
+    
+    raw_list = list()
+    
+    for i in result:
+        res = model.transcribe(i["path"], no_speech_threshold=0.4, language='korean')
+        [raw_list.append({"start": i["t1"], "end": i["t2"], "text": j["text"]}) for j in res["segments"]]
+        os.remove(i["path"])
+    return raw_list
+
 # 텍스트 정제
-def main(path):
-    transcribedText, transcribedList = trans(path)
-    return transcribedText, transcribedList
+def main(path, timestamp):
+    transcribedText= trans(split_wav(timestamp, path))
+    return transcribedText

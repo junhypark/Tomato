@@ -4,10 +4,13 @@ import stt
 import pickle
 import sys
 import translate_file
+import timing
+import tts
+import preprocess
 
 def save(result, result2=None):
     with open('temp_list.pkl', 'wb') as f:
-        pickle.dump(result+"\n"+"-"*300+"\n", f)
+        pickle.dump(result, f)
         pickle.dump(result2, f)
 
 def main(args):
@@ -17,34 +20,47 @@ def main(args):
     print("Enter the input video file")
     video_path = input()
     
-    print("\n Enter the input docx file")
+    print("\nEnter the input docx file")
     docx_path = input()
 
-    print("\n Enter the name of wav file")
+    print("\nEnter the name of wav file")
     audio_path = input()
 
     # open docx and wav
     path, docx = translate_file.main(video_file=video_path, audio_file=audio_path, docx_file=docx_path)
 
-    print("\nDenoising is running...")
-    first_path = denoise.main(path)
+    # print("\nDenoising is running...")
+    # audio_path = denoise.main(path)
+
+    print("\nPyannote is running...")
+    blank, re_time = timing.main('./output/'+audio_path)
 
     print("\nSpeech To Text is running...")
-    dialogues, dialoguesList = stt.main(first_path)
+    dialogues = stt.main('./output/'+audio_path, re_time)
 
     if sys.argv[1]:
         if "-c" in sys.argv or "--check" in sys.argv:
             print("\nFor chekcing!")
-            print(dialoguesList)
+            print(docx)
         elif "--saveoutput" in sys.argv or "-s" in sys.argv:
             print("\nStoring dialogues")
             save(dialogues)
         elif "--savedictionary" in sys.argv or "-sd" in sys.argv:
             print("\nStoring dialogues and dictionary")
-            save(dialogues, result2=dialoguesList)
+            save(dialogues, result2=docx)
+
+    print("\nPreprocessing...")
+    scene = preprocess.main(docx)
 
     print("\nChecking Similarities...")
-    sts.main(dialogues, docx)
+    comment, best_scenes = sts.main(dialogues, scene)
+ 
+    final = preprocess.check_blank(scene, comment, best_scenes, blank)
+
+    print(final)
+
+    print("\nMaking Speech for Comment...")
+    tts.main(final)
 
 if __name__ == '__main__':
     main(sys.argv)

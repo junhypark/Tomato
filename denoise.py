@@ -2,7 +2,7 @@ from modelscope.pipelines import pipeline
 from modelscope.utils.constant import Tasks
 
 def main(path):
-    input_path = './input/'+path
+    input_path = './output/'+path
 
     ans = pipeline(
         Tasks.acoustic_noise_suppression,
