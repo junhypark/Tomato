@@ -52,15 +52,33 @@ def main(args):
     print("\nPreprocessing...")
     scene = preprocess.main(docx)
 
+    temp = ''
+    for di in dialogues:
+        temp += '\n'+di["text"]
     print("\nChecking Similarities...")
-    comment, best_scenes = sts.main(dialogues, scene)
- 
-    final = preprocess.check_blank(scene, comment, best_scenes, blank)
 
-    print(final)
+    comment = sts.main(docx, temp)
+ 
+    with open("scene.pkl", 'wb') as f:
+        pickle.dump(scene, f)
+
+    with open("dialogues.pkl", 'wb') as f:
+        pickle.dump(dialogues, f)
+    
+    with open("comment.pkl", "wb") as f:
+        pickle.dump(comment, f)
+    
+    with open("blank.pkl", "wb") as f:
+        pickle.dump(blank, f)
+
+    print("\nChecking Blank...")
+    final = preprocess.check_blank(scene, dialogues, comment, blank)
+
+    for f in final:
+        print(f, '\n')
 
     print("\nMaking Speech for Comment...")
-    tts.main(final)
+    tts.main(final, './output/'+audio_path, './input/'+video_path)
 
 if __name__ == '__main__':
     main(sys.argv)
