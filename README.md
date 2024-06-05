@@ -80,3 +80,25 @@ If you need ```rust``` installed as well, please findout in the whisper github h
 * For more information please look at https://github.com/jhgan00/ko-sentence-transformers
 
 * they recommend **Python 3.8 or higher**, at least **PyTorch 1.11.0**, and **transformers 4.32.0 or higher**
+
+---
+
+## 1-4. pyannote
+
+* To install, use pip:
+
+        pip install pyannote.audio==2.1.1
+
+* In order to math same torch version, we used 2.1.1
+
+---
+
+## 1-5. gTTS
+
+* To install, use pip:
+
+        pip install gTTS
+
+* Nothing to handle with versions, do not worry
+
+---
