@@ -31,7 +31,9 @@ TOMATO: For Barrier Free Movie auTOMAtic descripTiOn
 
 # 1. Models
 
-* environments: Ubuntu 20.04 LTS
+* environments: Ubuntu 20.04 LTS, Anaconda3 with 3.8 python version
+
+* Need: Memory about Higher than 32GB in CPU
 
 ---
 
