@@ -38,16 +38,21 @@ def main(args):
     print("\nSpeech To Text is running...")
     dialogues = stt.main('./output/'+audio_path, re_time)
 
-    if sys.argv[1]:
-        if "-c" in sys.argv or "--check" in sys.argv:
-            print("\nFor chekcing!")
-            print(docx)
-        elif "--saveoutput" in sys.argv or "-s" in sys.argv:
-            print("\nStoring dialogues")
-            save(dialogues)
-        elif "--savedictionary" in sys.argv or "-sd" in sys.argv:
-            print("\nStoring dialogues and dictionary")
-            save(dialogues, result2=docx)
+    try:
+        if sys.argv[1]:
+            if "-c" in sys.argv or "--check" in sys.argv:
+                print("\nFor chekcing!")
+                print(docx)
+            elif "--saveoutput" in sys.argv or "-s" in sys.argv:
+                print("\nStoring dialogues")
+                save(dialogues)
+            elif "--savedictionary" in sys.argv or "-sd" in sys.argv:
+                print("\nStoring dialogues and dictionary")
+                save(dialogues, result2=docx)
+            else:
+                pass
+    except IndexError:
+        pass
 
     print("\nPreprocessing...")
     scene = preprocess.main(docx)
