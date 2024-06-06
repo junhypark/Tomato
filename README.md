@@ -1,7 +1,33 @@
 # Tomato
 TOMATO: For Barrier Free Movie auTOMAtic descripTiOn
 
-## 0. Introduction
+## 0. Instruction
+
+* input will be two arguments
+
+* Movie file which is mp4 file
+
+* Scenario file which is docx file
+
+        Enter Movie path
+
+        >>> PATH_TO_MOVIE
+
+* Movie file has to be in input folder
+
+        Enter Scenario path
+
+        >>> PATH_TO_SCENARIO
+
+* The format has to be ```./input/NAME_OF_DOCX```
+
+* Name to wav file to extract from movie mp4 file
+
+        Enter Wav path
+
+        >>> NAME_OF_WAV
+
+---
 
 ## 1. Models
 
@@ -102,3 +128,27 @@ If you need ```rust``` installed as well, please findout in the whisper github h
 * Nothing to handle with versions, do not worry
 
 ---
+
+## 1-6. Additional Library
+
+* To run Tomato you have to install ```pydub```, ```moviepy```, and ```python-docx```
+
+        pip install pydub
+
+        pip install moviepy
+
+        pip install python-docx
+
+* After install all library you can run init.py
+
+---
+
+## 1-7. Result
+
+* After finish running python code, you can view result mp4 named in ```result.mp4```
+
+---
+
+# 2. Motivation
+
+* 
