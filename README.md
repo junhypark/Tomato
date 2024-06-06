@@ -1,7 +1,7 @@
 # Tomato
 TOMATO: For Barrier Free Movie auTOMAtic descripTiOn
 
-## 0. Instruction
+# 0. Instruction
 
 * input will be two arguments
 
@@ -29,7 +29,7 @@ TOMATO: For Barrier Free Movie auTOMAtic descripTiOn
 
 ---
 
-## 1. Models
+# 1. Models
 
 * environments: Ubuntu 20.04 LTS
 
