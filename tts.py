@@ -1,9 +1,15 @@
-from gtts import gTTS
+from melo.api import TTS
 from pydub import AudioSegment
 import soundfile as sf
 import numpy as np
 import math
 from moviepy.editor import VideoFileClip, AudioFileClip
+# from transformers import PreTrainedTokenizerFast, BartForConditionalGeneration
+
+# model loading to revise scenario comment 
+# model_path = 'train/model'
+# tokenizer = PreTrainedTokenizerFast.from_pretrained(model_path)
+# model = BartForConditionalGeneration.from_pretrained(model_path)
 
 def speed_up(path, speed=1.5):
     audio = AudioSegment.from_file(path)
@@ -22,7 +28,7 @@ def concat_wav(tts_list, fname, output_path='result.wav'):
         
         og_blank = combined_audio[t1:t2]
         blank = AudioSegment.from_file(t["path"])
-        speed = 1.4
+        speed = 1.2
         blank_sec = blank.duration_seconds
         blank_file = blank
 
@@ -53,9 +59,23 @@ def main(comment, fname, mp4):
     # comment = [{start, end, text}]
     tts_list = list()
 
+    device = "cpu"
+    speed = 1.2
+    model = TTS(language='KR', device=device)
+    speaker_ids = model.hps.data.spk2id
+    
+    
     for cm in comment:
-        tts = gTTS(text = cm["text"], lang='ko', slow=False)
-        tts.save("comment" + str(cm["start"]) + ".wav")
+        # tts = gTTS(text = cm["text"], lang='ko', slow=False)
+        # tts.save("comment" + str(cm["start"]) + ".wav")
+        wav_path = "comment" + str(cm["start"]) + ".wav"
+
+        # inputs = tokenizer(cm["text"], max_length=256, truncation=True, return_tensors="pt")
+        # output_tokens = model.generate(inputs["input_ids"], max_length=256, num_beams=2, early_stopping=True)
+        # revised_comment = tokenizer.decode(output_tokens[0], skip_special_tokens=True, clean_up_tokenization_spaces=True)
+
+        model.tts_to_file(revised_comment, speaker_ids["KR"], wav_path, speed=speed)
         tts_list.append({"start": cm["start"], "end": cm["end"], "path": "./comment" + str(cm["start"]) + ".wav"})
+
     concat_wav(tts_list, fname)
     over_mp4(mp4)
