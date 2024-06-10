@@ -1,5 +1,6 @@
 # Tomato
-> TOMATO(auTOMAtic descripTiOn) is automatic barrier free movie making project using several AI model for blind people. 
+> TOMATO(auTOMAtic descripTiOn) is automatic barrier free movie making project using several AI model for blind people.
+> If you have any question, please use issues tab or contact us via: [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:jjuhee0913@gmail.com)](mailto:phjpurpleoob@gmail.com)
 
 # 0. Instruction
 
@@ -23,6 +24,7 @@ And if your Python environment is set up correctly, you will convert the scenari
 > We recommed you to use Anaconda Environment
 
 * Via Anaconda, please use "runconda.sh", the example is below
+![image](https://github.com/junhypark/Tomato/assets/58024443/278890fb-b5ba-4245-8477-db34a2511e8c)
 
 ---
 # 1. Models
