@@ -1,5 +1,5 @@
 # Tomato
-      TOMATO(auTOMAtic descripTiOn) is automatic barrier free movie making project using several AI model for blind people. 
+> TOMATO(auTOMAtic descripTiOn) is automatic barrier free movie making project using several AI model for blind people. 
 
 # 0. Instruction
 
@@ -111,7 +111,8 @@ If you need ```rust``` installed as well, please findout in the whisper github h
 
 We use the MeloTTS for Text to Speech task, so you should install MeloTTS. 
 
-        pip install gTTS
+Please refer to the link below for download method.
+      https://github.com/myshell-ai/MeloTTS/blob/main/docs/install.md
 
 * Nothing to handle with versions, do not worry
 
