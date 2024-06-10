@@ -107,11 +107,12 @@ If you need ```rust``` installed as well, please findout in the whisper github h
 
 ---
 
-## 1-5. gTTS
+## 1-5. MeloTTS
 
-* To install, use pip:
+We use the MeloTTS for Text to Speech task, so you should install MeloTTS. 
 
-        pip install gTTS
+Please refer to the link below for download method.
+      https://github.com/myshell-ai/MeloTTS/blob/main/docs/install.md
 
 * Nothing to handle with versions, do not worry
 
