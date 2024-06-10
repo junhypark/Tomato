@@ -1,3 +1,5 @@
+#!/bin/bash
+
 read -p "Enter the input video file name : " video_file
 read -p "Enter the input docx file name : " docx_file
 read -p "Enter the name of output wav file name : " wav_file

@@ -4,3 +4,4 @@
 *.pkl
 *.docx
 *.json
+__pycache__/
