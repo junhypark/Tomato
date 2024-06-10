@@ -1,10 +1,10 @@
 # Tomato
-## TOMATO(auTOMAtic descripTiOn) : \n automatic barrier free movie making project using several AI model for blind people. 
+> TOMATO(auTOMAtic descripTiOn) is automatic barrier free movie making project using several AI model for blind people. 
 
 # 0. Instruction
 
-
-* Movie file which is mp4 file
+* If you want to make a barrier free movie, you should prepare a "_*.mp4_" file & "_*.docx_" file which is movie scenario."
+* 
 
 * Scenario file which is docx file
 
