@@ -22,6 +22,8 @@ And if your Python environment is set up correctly, you will convert the scenari
 
 > We recommed you to use Anaconda Environment
 
+* Via Anaconda, please use "runconda.sh", the example is below
+
 ---
 # 1. Models
 
