@@ -1,40 +1,26 @@
 # Tomato
-TOMATO: For Barrier Free Movie auTOMAtic descripTiOn
+> TOMATO(auTOMAtic descripTiOn) is automatic barrier free movie making project using several AI model for blind people. 
 
 # 0. Instruction
 
-* input will be two arguments
+> If you want to make a barrier free movie, you should prepare  "_*.mp4_" file and "_*.docx_" file(which is movie scenario).
+> When movie and scenario file are prepared, you have to put your files in "input" folder.
+> Then, just run "run.sh" on the Linux OS. We recommend to use Ubuntu 20.04.  
 
-* Movie file which is mp4 file
+* If you ran "run.sh", you will see the command line as below.
+![image](https://github.com/junhypark/Tomato/assets/164970413/2da79014-8802-449d-a946-03e020aa147f)
 
-* Scenario file which is docx file
+And if your Python environment is set up correctly, you will convert the scenario and movie files into barrier-free movies correctly.
+(But this will take a so long time and computer resources to complete...)
 
-        Enter Movie path
-
-        >>> PATH_TO_MOVIE
-
-* Movie file has to be in input folder
-
-        Enter Scenario path
-
-        >>> PATH_TO_SCENARIO
-
-* The format has to be ```./input/NAME_OF_DOCX```
-
-* Name to wav file to extract from movie mp4 file
-
-        Enter Wav path
-
-        >>> NAME_OF_WAV
+> Python enviroment setting is a little complicate, so we add a "setting.sh".
+> When you run "setting.sh", then required python library will installed. 
 
 ---
-
 # 1. Models
 
-* environments: Ubuntu 20.04 LTS, Anaconda3 with 3.8 python version
-
-* Need: Memory about Higher than 32GB in CPU
-
+* environments: Ubuntu 20.04 LTS, Anaconda3 with 3.9.19 python version
+* Need: Memory about Higher than 16GB in CPU
 ---
 
 ## 1-1. Denoise
