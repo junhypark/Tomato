@@ -7,31 +7,20 @@
 > When movie and scenario file are prepared, you have to put your files in "input" folder.
 > Then, just run "run.sh" on the Linux OS. We recommend to use Ubuntu 20.04.  
 
-* If you set up your environment correctly and ran "run.sh ", you will see the command line as below.
+* If you ran "run.sh", you will see the command line as below.
+![image](https://github.com/junhypark/Tomato/assets/164970413/2da79014-8802-449d-a946-03e020aa147f)
 
+And if your Python environment is set up correctly, you will convert the scenario and movie files into barrier-free movies correctly.
+(But this will take a so long time and computer resources to complete...)
 
-* Movie file has to be in input folder
-
-        Enter Scenario path
-
-        >>> PATH_TO_SCENARIO
-
-* The format has to be ```./input/NAME_OF_DOCX```
-
-* Name to wav file to extract from movie mp4 file
-
-        Enter Wav path
-
-        >>> NAME_OF_WAV
+> Python enviroment setting is a little complicate, so we add a "setting.sh".
+> When you run "setting.sh", then required python library will installed. 
 
 ---
-
 # 1. Models
 
-* environments: Ubuntu 20.04 LTS, Anaconda3 with 3.8 python version
-
-* Need: Memory about Higher than 32GB in CPU
-
+* environments: Ubuntu 20.04 LTS, Anaconda3 with 3.9.19 python version
+* Need: Memory about Higher than 16GB in CPU
 ---
 
 ## 1-1. Denoise
