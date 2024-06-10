@@ -1,5 +1,5 @@
 # Tomato
-## TOMATO(auTOMAtic descripTiOn) is automatic barrier free movie making project using several AI model for blind people. 
+## TOMATO(auTOMAtic descripTiOn) : \nautomatic barrier free movie making project using several AI model for blind people. 
 
 # 0. Instruction
 
