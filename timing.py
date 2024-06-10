@@ -27,4 +27,7 @@ def main(fname):
     for j in range(len(result)-1):
         if result[j+1]["start"] - result[j]["end"]  >= 3:
             temp.append({"speak1": result[j]["end"], "speak2": result[j+1]["start"]})
+
+    del pipeline  
+
     return temp, result

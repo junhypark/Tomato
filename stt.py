@@ -12,8 +12,8 @@ def split_wav(timestamp, path):
         t1 = i["start"] * 1000
         t2 = i["end"] * 1000
         split_audio = audio[t1:t2]
-        split_audio.export('./temp'+str(t1)+'.wav', format="wav")
-        result.append({"path":'./temp'+str(t1)+'.wav', "t1": t1/1000, "t2": t2/1000})
+        split_audio.export('temp_wav/temp'+str(t1)+'.wav', format="wav")
+        result.append({"path":'temp_wav/temp'+str(t1)+'.wav', "t1": t1/1000, "t2": t2/1000})
         
     return result
 
@@ -27,9 +27,13 @@ def trans(result):
         res = model.transcribe(i["path"], no_speech_threshold=0.4, language='korean')
         [raw_list.append({"start": i["t1"], "end": i["t2"], "text": j["text"]}) for j in res["segments"]]
         os.remove(i["path"])
+
+    del model
+
     return raw_list
 
 # 텍스트 정제
 def main(path, timestamp):
     transcribedText= trans(split_wav(timestamp, path))
+
     return transcribedText

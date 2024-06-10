@@ -33,7 +33,7 @@ def get_list_number(paragraph):
     return ""
 
 def open_docx(docx_file_path):
-    doc = Document(docx_file_path)
+    doc = Document('./input/'+docx_file_path)
     result = ''
 
     for paragraph in doc.paragraphs:

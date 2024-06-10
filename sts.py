@@ -209,4 +209,6 @@ def main(scenario_text, movie_dialogue_text):
         movie_dialogue, best_match_sentence, scene, similarity = result
         print(f"영화 대사: {movie_dialogue}\n가장 유사한 씬 문장: {best_match_sentence}\n씬: {scene}\n유사도: {similarity}\n")
     
+    del model
+
     return filtered_results
