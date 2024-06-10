@@ -20,5 +20,3 @@ fi
 python3 init.py "$video_file" "$docx_file" "$wav_file"
 python3 generate_tts.py "$video_file" "$wav_file"
 
-echo "Barrier free move generating is done! :)"
-
