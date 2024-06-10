@@ -3,13 +3,12 @@
 
 # 0. Instruction
 
-* If you want to make a barrier free movie, you should prepare  "_*.mp4_" file and "_*.docx_" file(which is movie scenario).
-* When movie and scenario file are prepared, you have to put your files in "input" folder.
-* Then, just run "run.sh" on the Linux OS. We recommend to use Ubuntu 20.04.  
+> If you want to make a barrier free movie, you should prepare  "_*.mp4_" file and "_*.docx_" file(which is movie scenario).
+> When movie and scenario file are prepared, you have to put your files in "input" folder.
+> Then, just run "run.sh" on the Linux OS. We recommend to use Ubuntu 20.04.  
 
-        Enter Movie path
+* If you set up your environment correctly and ran "run.sh ", you will see the command line as below.
 
-        >>> PATH_TO_MOVIE
 
 * Movie file has to be in input folder
 
