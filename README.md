@@ -13,9 +13,6 @@
 And if your Python environment is set up correctly, you will convert the scenario and movie files into barrier-free movies correctly.
 (But this will take a so long time and computer resources to complete...)
 
-> Python enviroment setting is a little complicate, so we add a "setting.sh".
-> When you run "setting.sh", then required python library will installed. 
-
 ---
 # 1. Models
 
