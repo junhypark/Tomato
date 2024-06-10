@@ -13,6 +13,15 @@
 And if your Python environment is set up correctly, you will convert the scenario and movie files into barrier-free movies correctly.
 (But this will take a so long time and computer resources to complete...)
 
+* If you are using ```Anaconda``` Environemnt, please install torch using conda, not pip command
+
+> If you already installed "torch, torchvision, torchaudio" via pip, please uninstall and download via conda
+
+            pip uninstall torch torchvision torchaudio
+            conda install torch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0
+
+> We recommed you to use Anaconda Environment
+
 ---
 # 1. Models
 
