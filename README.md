@@ -19,7 +19,7 @@ And if your Python environment is set up correctly, you will convert the scenari
 > If you already installed "torch, torchvision, torchaudio" via pip, please uninstall and download via conda
 
             pip uninstall torch torchvision torchaudio
-            conda install torch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0
+            conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 -c pytorch
 
 > We recommed you to use Anaconda Environment
 
