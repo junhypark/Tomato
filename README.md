@@ -1,5 +1,4 @@
 # Tomato
-> hi 
 > TOMATO(auTOMAtic descripTiOn) is automatic barrier free movie making project using several AI model for blind people.
 > If you have any question, please use issues tab or contact us via: [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:jjuhee0913@gmail.com)](mailto:phjpurpleoob@gmail.com)
 
