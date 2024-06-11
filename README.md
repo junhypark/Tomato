@@ -164,4 +164,4 @@ After finish running python code, you can view result mp4 named in ```result.mp4
 
 # 3. With Web
 
-* 
+* You can run this all file after finishing setting local WSL env with Python file, except ```toamto-app```
