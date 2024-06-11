@@ -32,40 +32,11 @@ And if your Python environment is set up correctly, you will convert the scenari
 * environments: Ubuntu 20.04 LTS, Anaconda3 with 3.9.19 python version
 * Need: Memory about Higher than 16GB in CPU
 ---
+If you use conda virtual enviroment, please enter the below command.
 
-## 1-1. Denoise
+conda create -n modelscope python=3.9
+conda activate modelscope
 
-* We need a new virtual environment
-
-* Used **Modelscope** which is from here
-https://github.com/modelscope/modelscope
-
-* we used **anaconda** for creating local python environment
-
-      conda create -n modelscope python=3.8 
-      conda activate modelscope
-
-  * For using **modelscope framework**, install the core modelscope components:
-
-        pip install modelscope
-
-    or
-
-        pip install modelscope[audio] -f https://modelscope.oss-cn-beijing.aliyuncs.com/releases/repo.html
-
-* We used **FRCRN** which is developed by **Alibaba** https://github.com/alibabasglab/FRCRN
-
-  * This model has a problem in above **PyTorch v1.11**
-
-        conda install pytorch==1.11 torchaudio torchvision -c pytorch
-
-  * for linux install ```libsndfile1```
-
-        sudo apt-get update
-
-        sudo apt-get install libsndfile1
-
----
 
 ## 1-2. Speech to Text
 
@@ -73,7 +44,7 @@ https://github.com/modelscope/modelscope
 
 * Although **whisper** is developed in **Python 3.9.9** and **PyTorch 1.10.1**
 
-* And thanks to **OpenAI**, it is also runnable in **Python 3.8.10** and **PyTorch 1.11**
+* And thanks to **OpenAI**, it is also runnable in **Python 3.9** and **PyTorch 1.11**
 
 ### So, we do not need to update any of them!
 
