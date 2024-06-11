@@ -38,7 +38,7 @@ If you use conda virtual enviroment, please enter the below command.
             conda activate modelscope
 
 
-## 1-2. Speech to Text
+## 1-1. Speech to Text
 
 * We used **whisper** model developed by **OpenAI** repectively, https://github.com/openai/whisper
 
@@ -66,7 +66,7 @@ If you need ```rust``` installed as well, please findout in the whisper github h
 
 ---
 
-## 1-3. ko-sentence-transformers
+## 1-2. ko-sentence-transformers
 
 * To install, use pip:
 
@@ -78,7 +78,7 @@ If you need ```rust``` installed as well, please findout in the whisper github h
 
 ---
 
-## 1-4. pyannote
+## 1-3. pyannote
 
 * To install, use pip:
 
@@ -88,7 +88,7 @@ If you need ```rust``` installed as well, please findout in the whisper github h
 
 ---
 
-## 1-5. MeloTTS
+## 1-4. MeloTTS
 
 We use the MeloTTS for Text to Speech task, so you should install MeloTTS. 
 
@@ -114,7 +114,7 @@ Once you have installed the required dependent libraries, the txtsplit library w
 
 ---
 
-## 1-6. Additional Library
+## 1-5. Additional Library
 
 * To run Tomato you have to install ```pydub```, ```moviepy```, and ```python-docx```
 
@@ -128,13 +128,13 @@ Once you have installed the required dependent libraries, the txtsplit library w
 
 ---
 
-## 1-7. Result
+## 1-6. Result
 
 * After finish running python code, you can view result mp4 named in ```result.mp4```
 
 ---
 
-## 1-8. Train KoBART
+## 1-7. Train KoBART
 
 To paraphrase movie scenario description, we fine-tune KoBART(https://huggingface.co/gogamza/kobart-base-v2) pre-trained model. 
 
