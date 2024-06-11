@@ -173,3 +173,17 @@ First of all, please download all of your node package by running this command,
             npm install
 
 Absolutely, you have to go to ```tomato-app``` via terminal
+
+## Running
+
+Set your terminal into proper folder path
+
+1. run flask which is app.py
+
+            python app.py
+
+2. run node
+
+            npm start
+
+It will automatically, run WSL and python file
