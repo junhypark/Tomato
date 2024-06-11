@@ -122,9 +122,24 @@ If you need ```rust``` installed as well, please findout in the whisper github h
 We use the MeloTTS for Text to Speech task, so you should install MeloTTS. 
 
 Please refer to the link below for download method.
+
       https://github.com/myshell-ai/MeloTTS/blob/main/docs/install.md
 
-* Nothing to handle with versions, do not worry
+* Before install MeloTTS library, you should install txtsplit-1.0.0. Please enter below command.
+
+            pip install txtsplit
+
+If "pip install txtsplit" is not working, you have to install manually.
+
+            https://pypi.org/project/txtsplit/#files
+
+Go to above link, and download "txtsplit-1.0.0.tar.gz". Unzip it, and put it to your working directory(tomato).
+
+When you enter the "txtsplit" directory, you may see "setup.py". In the "txtsplit" folder, you enter below command.
+
+            pip install -e .
+
+Once you have installed the required dependent libraries, the txtsplit library will be installed. Please try it.
 
 ---
 
