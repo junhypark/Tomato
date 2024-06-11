@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible Film Narration Automation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>TOMATO</h1>
+            <p>auTOMAtic screen descripTiOn</p>
+        </div>
+        <div class="steps-bar">
+            <div class="step-item active" id="step-1" onclick="goToStep(1)">Step 1: Upload a Video</div>
+            <div class="step-item" id="step-2" onclick="goToStep(2)">Step 2: Upload a docx</div>
+            <div class="step-item" id="step-3" onclick="goToStep(3)">Step 3: Processing</div>
+            <div class="step-item" id="step-4" onclick="goToStep(4)">Step 4: Complete</div>
+        </div>
+        <div class="steps">
+            <div class="step active" id="step1">
+                <h2>Upload a Video</h2>
+                <p>Upload your video file to generate audio descriptions.</p>
+                <div class="file-input">
+                    <input type="file" id="video" name="video" accept=".mp4,.mkv" onchange="handleFileUpload(event)">
+                    <label for="video">
+                        <span class="material-icons-outlined">video_library</span>
+                    </label>
+                    <p class="file-name" id="video-file-name"></p>
+                </div>
+                <button class="next-button" onclick="nextStep(2)">Next</button>
+            </div>
+            <div class="step" id="step2">
+                <h2>Upload a docx</h2>
+                <p>Upload your script or description file.</p>
+                <div class="file-input">
+                    <input type="file" id="file" name="file" accept=".doc,.docx" onchange="handleFileUpload(event)">
+                    <label for="file">
+                        <span class="material-icons-outlined">description</span>
+                    </label>
+                    <p class="file-name" id="file-file-name"></p>
+                </div>
+                <button class="next-button" onclick="uploadFiles()">Next</button>
+            </div>
+            <div class="step" id="step3">
+                <h2>Processing</h2>
+                <div class="loader"></div>
+                <p>Please wait while we process your files to create audio descriptions...</p>
+            </div>
+            <div class="step" id="step4">
+                <h2>Complete</h2>
+                <p>Your audio descriptions have been generated.</p>
+                <a href="#" id="download-link" class="download-button">Download</a>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

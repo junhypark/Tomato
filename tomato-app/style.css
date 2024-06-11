@@ -1,0 +1,292 @@
+/* Global styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+    background-color: #1e1e1e;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.7s ease-in-out;
+    position: relative;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.header h1 {
+    color: #ff4d4d;
+    font-size: 32px;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.header p {
+    color: #b0b0b0;
+    margin: 10px 0 0;
+    font-size: 18px;
+}
+
+.steps-bar {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-bottom: 40px;
+    background-color: #2c2c2c;
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.step-item {
+    flex: 1;
+    padding: 13px 0;
+    text-align: center;
+    border-radius: 12px;
+    background-color: #333;
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    font-weight: 500;
+    margin: 0 4px;
+    opacity: 0.5;
+}
+
+.step-item.active {
+    background-color: #ff4d4d;
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 77, 77, 0.4);
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+.step-item.completed {
+    background-color: #4caf50; /* Green background for completed steps */
+    color: white;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.step {
+    display: none;
+    padding: 36px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    background: rgba(33, 33, 33, 0.95);
+    transition: transform 0.5s, box-shadow 0.5s, opacity 0.5s;
+    position: relative;
+}
+
+.step.active {
+    display: block;
+    animation: slideIn 0.7s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #e0e0e0;
+    font-size: 24px;
+}
+
+p {
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: #b0b0b0;
+    font-size: 18px;
+}
+
+.file-input {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.file-input input[type="file"] {
+    width: 100%;
+    height: 100%;
+    padding: 14px;
+    border: 2px solid #ff4d4d;
+    border-radius: 12px;
+    outline: none;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.file-input label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    border: 2px solid #ff4d4d;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: #333;
+    color: #ff4d4d;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 77, 77, 0.2);
+    font-size: 72px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.file-input label:hover {
+    background-color: rgba(255, 77, 77, 0.1);
+    box-shadow: 0 4px 12px rgba(255, 77, 77, 0.4);
+    transform: scale(1.05);
+}
+
+.file-input.uploaded label {
+    background-color: #4caf50;
+    color: white;
+    border-color: #4caf50;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.file-input.uploaded label span {
+    display: none;
+}
+
+.file-input.uploaded label:before {
+    content: 'check_circle';
+    font-family: 'Material Icons Outlined';
+    font-size: 72px;
+    color: white;
+}
+
+.file-input .file-name {
+    margin-top: 10px;
+    color: #e0e0e0;
+    font-size: 16px;
+}
+
+.next-button {
+    padding: 12px 24px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    display: none;
+}
+
+.next-button:hover {
+    background-color: #e04343;
+    box-shadow: 0 4px 12px rgba(255, 77, 77, 0.4);
+    transform: scale(1.05);
+}
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #ff4d4d;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.download-button {
+    padding: 12px 24px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #45a045;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+    transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    .steps-bar {
+        flex-direction: column;
+    }
+    .step-item {
+        margin: 4px 0;
+    }
+    .file-input label {
+        width: 120px;
+        height: 120px;
+        font-size: 36px;
+    }
+    .next-button, .download-button {
+        width: 100%;
+    }
+}
