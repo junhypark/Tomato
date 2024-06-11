@@ -40,11 +40,11 @@ If you use conda virtual enviroment, please enter the below command.
 
 ## 1-1. Speech to Text
 
-* We used **whisper** model developed by **OpenAI** repectively, https://github.com/openai/whisper
+We used **whisper** model developed by **OpenAI** repectively, https://github.com/openai/whisper
 
-* Although **whisper** is developed in **Python 3.9.9** and **PyTorch 1.10.1**
+Although **whisper** is developed in **Python 3.9.9** and **PyTorch 1.10.1**
 
-* And thanks to **OpenAI**, it is also runnable in **Python 3.9** and **PyTorch 1.11**
+And thanks to **OpenAI**, it is also runnable in **Python 3.9** and **PyTorch 1.11**
 
 ### So, we do not need to update any of them!
 
@@ -68,23 +68,23 @@ If you need ```rust``` installed as well, please findout in the whisper github h
 
 ## 1-2. ko-sentence-transformers
 
-* To install, use pip:
+To install, use pip:
 
-        pip install -U sentence-transformers
+            pip install -U sentence-transformers
 
-* For more information please look at https://github.com/jhgan00/ko-sentence-transformers
+For more information please look at https://github.com/jhgan00/ko-sentence-transformers
 
-* they recommend **Python 3.8 or higher**, at least **PyTorch 1.11.0**, and **transformers 4.32.0 or higher**
+they recommend **Python 3.8 or higher**, at least **PyTorch 1.11.0**, and **transformers 4.32.0 or higher**
 
 ---
 
 ## 1-3. pyannote
 
-* To install, use pip:
+To install, use pip:
 
         pip install pyannote.audio==2.1.1
 
-* In order to math same torch version, we used 2.1.1
+In order to math same torch version, we used 2.1.1
 
 ---
 
@@ -116,15 +116,15 @@ Once you have installed the required dependent libraries, the txtsplit library w
 
 ## 1-5. Additional Library
 
-* To run Tomato you have to install ```pydub```, ```moviepy```, and ```python-docx```
+To run Tomato you have to install ```pydub```, ```moviepy```, and ```python-docx```
 
-        pip install pydub
+            pip install pydub
 
-        pip install moviepy
+            pip install moviepy
 
-        pip install python-docx
-
-* After install all library you can run init.py
+            pip install python-docx
+            
+After install all library you can run init.py
 
 ---
 
@@ -145,7 +145,7 @@ In the "Original" column, you have to put in original movie description, and the
 ---
 ## 1-7. Result
 
-* After finish running python code, you can view result mp4 named in ```result.mp4```
+After finish running python code, you can view result mp4 named in ```result.mp4```
 
 
 # 2. Motivation
