@@ -187,3 +187,9 @@ Set your terminal into proper folder path
             npm start
 
 It will automatically, run WSL and python file
+
+## Path
+
+Although, the files are written in relative path, non-absolute path
+
+In order to run all pipelines, you have to change folder path into your customized path in full path
