@@ -173,7 +173,7 @@ We deployed fine-tuned model on Google-Drive
 
 For you to train the model with your data, the dataset information used to train the model is as follows.
 - Columns : Original, Paraphrased
-- format of Dataset : .csv
+- format of Dataset : "_.csv_"
 
 In the "Original" column, you have to put in original movie description, and the "Paraphrased" column, you have to put in paraphrased original movie description. 
 
