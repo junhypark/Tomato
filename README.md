@@ -76,6 +76,13 @@ For more information please look at https://github.com/jhgan00/ko-sentence-trans
 
 they recommend **Python 3.8 or higher**, at least **PyTorch 1.11.0**, and **transformers 4.32.0 or higher**
 
+While using, there might be an error with ```ImportError: cannot import name 'get_full_repo_name' from 'huggingface_hub'```
+
+Please run this command
+
+            conda install chardet
+
+It will fix the ImportError
 ---
 
 ## 1-3. pyannote
