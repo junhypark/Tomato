@@ -123,9 +123,9 @@ We use the MeloTTS for Text to Speech task, so you should install MeloTTS.
 
 Please refer to the link below for download method.
 
-      https://github.com/myshell-ai/MeloTTS/blob/main/docs/install.md
+            https://github.com/myshell-ai/MeloTTS/blob/main/docs/install.md
 
-* Before install MeloTTS library, you should install txtsplit-1.0.0. Please enter below command.
+Before install MeloTTS library, you should install txtsplit-1.0.0. Please enter below command.
 
             pip install txtsplit
 
