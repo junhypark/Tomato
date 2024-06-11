@@ -143,7 +143,7 @@ For you to train the model with your data, the dataset information used to train
 In the "Original" column, you have to put in original movie description, and the "Paraphrased" column, you have to put in paraphrased original movie description. 
 
 ---
-## 1-6. Result
+## 1-7. Result
 
 * After finish running python code, you can view result mp4 named in ```result.mp4```
 
