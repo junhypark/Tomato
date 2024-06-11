@@ -163,6 +163,20 @@ Once you have installed the required dependent libraries, the txtsplit library w
 
 ---
 
+## 1-8. Train KoBART
+
+To paraphrase movie scenario description, we fine-tune KoBART(https://huggingface.co/gogamza/kobart-base-v2) pre-trained model. 
+
+We deployed fine-tuned model on Google-Drive
+
+            Google link
+
+For you to train the model with your data, the dataset information used to train the model is as follows.
+- Columns : Original, Paraphrased
+- format of Dataset : .csv
+
+In the "Original" column, you have to put in original movie description, and the "Paraphrased" column, you have to put in paraphrased original movie description. 
+
 # 2. Motivation
 
 * 
