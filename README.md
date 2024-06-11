@@ -174,6 +174,8 @@ First of all, please download all of your node package by running this command,
 
 Absolutely, you have to go to ```tomato-app``` via terminal
 
+---
+
 ## Running
 
 Set your terminal into proper folder path
@@ -187,6 +189,8 @@ Set your terminal into proper folder path
             npm start
 
 It will automatically, run WSL and python file
+
+---
 
 ## Path
 
