@@ -165,3 +165,11 @@ After finish running python code, you can view result mp4 named in ```result.mp4
 # 3. With Web
 
 * You can run this all file after finishing setting local WSL env with Python file, except ```toamto-app```
+
+(We assume that Node.js is already installed)
+
+First of all, please download all of your node package by running this command,
+
+            npm install
+
+Absolutely, you have to go to ```tomato-app``` via terminal
