@@ -34,8 +34,8 @@ And if your Python environment is set up correctly, you will convert the scenari
 ---
 If you use conda virtual enviroment, please enter the below command.
 
-conda create -n modelscope python=3.9
-conda activate modelscope
+            conda create -n modelscope python=3.9
+            conda activate modelscope
 
 
 ## 1-2. Speech to Text
