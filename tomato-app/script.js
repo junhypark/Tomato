@@ -34,7 +34,7 @@ async function uploadFiles() {
     formData.append('file', fileInput.files[0]);
 
     console.log('Uploading files...');
-
+    nextStep(3);
     try {
         const response = await fetch('http://127.0.0.1:3001/upload', {
             method: 'POST',
@@ -44,8 +44,8 @@ async function uploadFiles() {
         if (response.ok) {
             const result = await response.json();
             console.log('Files uploaded successfully:', result);
-            nextStep(3);
             window.resultFilePath = result.output;
+            nextStep(4);
         } else {
             const error = await response.json();
             console.error('File upload failed', error);
