@@ -75,7 +75,7 @@ def main(comment, fname, mp4):
         inputs = tokenizer(cm["text"], max_length=256, truncation=True, return_tensors="pt")
         output_tokens = paraphrase_model.generate(inputs["input_ids"], max_length=256, num_beams=2, early_stopping=True)
         revised_comment = tokenizer.decode(output_tokens[0], skip_special_tokens=True, clean_up_tokenization_spaces=True)
-        revised_comment = re.sub('\n', ' ', revised_comment)
+        revised_comment = re.sub('[\n|\r|\t]', ' ', revised_comment)
 
         model.tts_to_file(revised_comment, speaker_ids["KR"], wav_path, speed=speed)
         tts_list.append({"start": cm["start"], "end": cm["end"], "path": "./comment" + str(cm["start"]) + ".wav"})
