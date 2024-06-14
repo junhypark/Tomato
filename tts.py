@@ -25,7 +25,7 @@ def concat_wav(tts_list, fname, output_path='result.wav'):
         
         og_blank = combined_audio[t1:t2]
         blank = AudioSegment.from_file(t["path"])
-        speed = 1.2
+        speed = 1.1
         blank_sec = blank.duration_seconds
         blank_file = blank
 
@@ -57,7 +57,7 @@ def main(comment, fname, mp4):
     tts_list = list()
 
     device = "cuda:0" # or cpu
-    speed = 1.2
+    speed = 1.1
     model = TTS(language='KR', device=device)
     speaker_ids = model.hps.data.spk2id
 
@@ -72,10 +72,11 @@ def main(comment, fname, mp4):
         # tts.save("comment" + str(cm["start"]) + ".wav")
         wav_path = "comment" + str(cm["start"]) + ".wav"
 
-        inputs = tokenizer(cm["text"], max_length=256, truncation=True, return_tensors="pt")
-        output_tokens = paraphrase_model.generate(inputs["input_ids"], max_length=256, num_beams=2, early_stopping=True)
+        inputs = tokenizer(cm["text"], max_length=512, truncation=True, return_tensors="pt")
+        output_tokens = paraphrase_model.generate(inputs["input_ids"], max_length=256, num_beams=5, early_stopping=True)
         revised_comment = tokenizer.decode(output_tokens[0], skip_special_tokens=True, clean_up_tokenization_spaces=True)
-        revised_comment = re.sub('[\n|\r|\t]', ' ', revised_comment)
+        revised_comment = re.sub(r'[\n\r\t]', r' ', revised_comment)
+        revised_comment = re.sub(r' +', r' ', revised_comment)
 
         model.tts_to_file(revised_comment, speaker_ids["KR"], wav_path, speed=speed)
         tts_list.append({"start": cm["start"], "end": cm["end"], "path": "./comment" + str(cm["start"]) + ".wav"})

@@ -1,21 +1,27 @@
 import pandas as pd
-import torch.nn as nn
 from datasets import Dataset
-from transformers import PreTrainedTokenizerFast, BartForConditionalGeneration, Seq2SeqTrainingArguments, Seq2SeqTrainer
+from transformers import PreTrainedTokenizerFast, BartForConditionalGeneration
+from transformers import Seq2SeqTrainingArguments, Seq2SeqTrainer, EarlyStoppingCallback
 from transformers import DataCollatorForSeq2Seq
 from sklearn.model_selection import train_test_split
+import torch.nn as nn
+
+tokenizer = PreTrainedTokenizerFast.from_pretrained('gogamza/kobart-base-v2')
+model = BartForConditionalGeneration.from_pretrained('gogamza/kobart-base-v2')
 
 # remove newline and Nan rows
 def preprocess_csv(data):
-    processed_data = data.replace('\n', ' ', regex=True)
-    processed_data = processed_data.dropna(axis=0)
+    processed_data = data.replace(r'[\n\t\r]', r' ', regex=True)
+    processed_data = data.replace(r' +', r' ', regex=True)
+    processed_data = processed_data.dropna()
     processed_data = processed_data.reset_index(drop=True)
     return processed_data
 
+
 # function to create train & valid dataset
 def preprocess_function(examples):
-    inputs = tokenizer(examples['Original'], max_length=256, truncation=True, padding='max_length')
-    targets = tokenizer(examples['Summary'], max_length=256, truncation=True, padding='max_length')
+    inputs = tokenizer(examples['Original'], max_length=512, truncation=True, padding='max_length')
+    targets = tokenizer(examples['Paraphrase'], max_length=512, truncation=True, padding='max_length')
 
     inputs['labels'] = targets['input_ids']
     return inputs
@@ -28,20 +34,16 @@ def main():
     data_path = "./data/train.csv"
 
     data = pd.read_csv(data_path, encoding='utf-8')
-    data = data[['Original', 'Summary']]
+    data = data[['Original', 'Paraphrase']]
     data = preprocess_csv(data)
 
     train_data, valid_data = train_test_split(data, test_size=0.2, random_state=42)
     train_dataset = Dataset.from_pandas(train_data)
     valid_dataset = Dataset.from_pandas(valid_data)
 
-    tokenizer = PreTrainedTokenizerFast.from_pretrained('gogamza/kobart-base-v2')
-    model = BartForConditionalGeneration.from_pretrained('gogamza/kobart-base-v2')
+    no_freeze_param = ['model.decoder.layernorm_embedding.weight', 'model.decoder.layernorm_embedding.bias', 'lm_head.weight']
 
-    no_freeze_param = ['model.decoder.layernorm_embedding.weight', 'model.decoder.layernorm_embedding.bias',
-                       'lm_head.weight']
-
-    # freeze encoder layers and only train decoders
+    # freeze only encoders
     for name, para in model.named_parameters():
         # print(name, para.shape)
         if name in no_freeze_param:
@@ -50,7 +52,7 @@ def main():
             para.requires_grad = True
         else:
             para.requires_grad = False
-        # print(para)
+        # print(para.requires_grad)
 
     train_dataset = train_dataset.map(preprocess_function, batched=True, remove_columns=train_dataset.column_names)
     valid_dataset = valid_dataset.map(preprocess_function, batched=True, remove_columns=valid_dataset.column_names)
@@ -61,17 +63,19 @@ def main():
     logging_dir = './logs'
 
     training_args = Seq2SeqTrainingArguments(
-        output_dir=output_dir,
+        output_dir='./results',
         overwrite_output_dir=True,
-        num_train_epochs=100,
-        per_device_train_batch_size=16,
-        per_device_eval_batch_size=16,
+        num_train_epochs=50,
+        learning_rate = 3e-5,
+        per_device_train_batch_size=64,
+        per_device_eval_batch_size=64,
         weight_decay=0.01,
-        logging_dir=logging_dir,
+        logging_dir='./logs',
         logging_steps=1000,
         do_eval = True,
+        load_best_model_at_end=True,
         eval_steps=1000,
-        evaluation_strategy='steps',
+        eval_strategy='steps',
         save_strategy='steps',
         save_steps=5000
     )
@@ -81,13 +85,14 @@ def main():
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=valid_dataset,
-        data_collator=data_collator
+        data_collator=data_collator,
+        callbacks=[EarlyStoppingCallback(early_stopping_patience=5)]
     )
 
-    print('Model training is running...')
+    print('Model is training...')
     trainer.train()
-    model.save_pretrained('/home/softn/tomato/model')
-    tokenizer.save_pretrained('/home/softn/tomato/model')
+    model.save_pretrained('./model')
+    tokenizer.save_pretrained('./model')
 
 
 if __name__ == '__main__':
