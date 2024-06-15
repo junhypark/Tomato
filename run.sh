@@ -23,6 +23,6 @@ if [ -z "$wav_file" ]; then
     exit 1
 fi
 
-python3 init.py "$video_file" "$docx_file" "$wav_file"
-python3 generate_tts.py "$video_file" "$wav_file"
+python init.py "$root_path" "$video_file" "$docx_file" "$wav_file"
+python generate_tts.py "$video_file" "$wav_file" "$root_path"
 
