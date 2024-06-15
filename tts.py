@@ -1,7 +1,5 @@
 from melo.api import TTS
 from pydub import AudioSegment
-import soundfile as sf
-import numpy as np
 import math
 import re
 from moviepy.editor import VideoFileClip, AudioFileClip
@@ -72,8 +70,6 @@ def main(comment, fname, mp4, path):
     
     
     for cm in comment:
-        # tts = gTTS(text = cm["text"], lang='ko', slow=False)
-        # tts.save("comment" + str(cm["start"]) + ".wav")
         wav_path = path+"/comment" + str(cm["start"]) + ".wav"
 
         inputs = tokenizer(cm["text"], max_length=512, truncation=True, return_tensors="pt")

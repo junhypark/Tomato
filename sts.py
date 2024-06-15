@@ -1,73 +1,128 @@
 import re
 from sentence_transformers import SentenceTransformer, util
 
-# def parse_scenario(scenario_text):
-#     scenes = []
-#     scene_num = None
-#     s_line = ''
-#     s_text_list = []
-
-#     for i in scenario_text.split('\n'):
-#         new_scene_num = re.findall(r'^(\d+\.\s)', i)
-#         if new_scene_num:
-#             if scene_num:
-#                 s_text_list.append((scene_num, s_line.strip()))
-#             s_line = ''
-#             scene_num = new_scene_num[0].strip()
-#         else:
-#             s_line += '\n' + i
-
-#     if scene_num:
-#         s_text_list.append((scene_num, s_line.strip()))
-
-#     for i in s_text_list:
-#         liness = i[1].split('\n\n')
-#         for lines in liness:
-#             lines = re.findall(r'(^[가-힣0-9\s]{2,6})(\(Na\))?\n([가-힣A-Za-z0-9\s\(\)\,\?\!\.\…]*)', lines)
-
-#             if lines:
-#                 for line in lines:
-#                     clean_li = re.sub(r'\([^)]*\)', '', line[2])
-#                     clean_line = re.sub(r'\n', '', clean_li)
-#                     for linee in re.split('[.!?]', clean_line):    
-#                         if len(re.sub(' ', '', linee) >= 2:
-#                             scenes.append((i[0], linee))
-                    
-
-#     return scenes
-
 def parse_scenario(scenario_text):
+    tt = []
+    nn = []
+    cc = []
+    for line in scenario_text.split('\n\n'):
+        t = re.findall(r'[가-힣]{1,}(\(V\.O\.\))?\s?(\(NA\))?(\s*)?\t{1,}(\s*)?([가-힣A-Za-z0-9\s\(\)\,\?\!\.\…]*)',line)
+        if len(t) !=0 :
+            tt.append(line)
+        n = re.findall(r'^(\(?[가-힣]{1,}\)?(\(V\.O\.\))?\s?(\(Na\))?\n{1,})([가-힣\.\,\!\?\s\t]*)',line)
+        if len(n) !=0:
+            nn.append(line)
+        c = re.findall(r'[가-힣]{1,}(\(V\.O\.\))?\s?(\(NA\))?(\s)*\:([가-힣A-Za-z0-9\s\(\)\,\?\!\.\…]*)',line)
+        if len(c) !=0:
+            cc.append(line)
+
+    listtype=[('tt', tt), ('nn', nn), ('cc', cc)]
+    stype = max(listtype, key=lambda k: len(k[1]))[0]
+
+    print('Type is ', stype)
+
+    if stype=='tt':
+        return tapp(scenario_text)
+    elif stype=='nn':
+        return neww(scenario_text)
+    elif stype=='cc':
+        return coll(scenario_text)
+
+def neww(scenario_text):
     scenes = []
     scene_num = None
     s_line = ''
     s_text_list = []
-
     for i in scenario_text.split('\n'):
-        new_scene_num = re.findall(r'^(\d+\.\s)', i)
-        if new_scene_num:
-            if scene_num:
-                s_text_list.append((scene_num, s_line.strip()))
-            s_line = ''
-            scene_num = new_scene_num[0].strip()
-        else:
-            s_line += '\n' + i
-
+            new_scene_num = re.findall(r'^(?:\n)?(?:S#)?(?:#)?(?:#S)?(\d+)(\.)(.+)', i)
+            if new_scene_num:
+                if scene_num:
+                    s_text_list.append((scene_num, s_line.strip()))
+                s_line = ''
+                scene_num = new_scene_num[0]  #.strip()
+            else:
+                s_line += '\n' + i
+    
     if scene_num:
         s_text_list.append((scene_num, s_line.strip()))
-
+    
     for i in s_text_list:
         liness = i[1].split('\n\n')
-        for lines in liness:  # 배역과 대사
-                                         
-            lines = re.findall(r'(^[가-힣0-9\s]{1,5})(\(Na\))?\n{1,}(.+(\n)?)+', lines)
+        for lines in liness:                                        
+            lines = re.findall(r'^([가-힣]{1,5}[0-9]?[A-z]?[a-z]?\s?)(\(V\.O\.\))?(\(V\.O\))?(\(v\.o\.\))?(\(v\.o\))?\s?(\(NA\))?(\(Na\))?(\(na\))?(\(N\))?(\s*)?\n{1,}(\s*)?([가-힣A-Za-z0-9\s\(\)\,\?\!\.\…]*)',lines)
             for line in lines:
-                textd = line[2].replace('\n', '').strip()
+                textd = line[11].replace('\n', '').strip()
+                textd = textd.replace('\t', '').strip()
+                textd = textd.replace('\s', '').strip()
+                texxt=re.sub(r'\(.*?\)', '', textd).strip()
+                for linee in re.split('[.!?]', texxt):    
+                    if len(re.sub(' ', '', linee)) >= 2:
+                        scenes.append((i[0], linee))               
+    return scenes
+
+def tapp(scenario_text):
+    scenes = []
+    scene_num = None
+    s_line = ''
+    s_text_list = []
+    for i in scenario_text.split('\n'):
+            new_scene_num = re.findall(r'^(?:\n)?(?:S#)?(?:#)?(?:#S)?(\d+)(\.)(.+)', i)
+            if new_scene_num:
+                if scene_num:
+                    s_text_list.append((scene_num, s_line.strip()))
+                s_line = ''
+                scene_num = new_scene_num[0]  #.strip()
+            else:
+                s_line += '\n' + i
+    
+    if scene_num:
+        s_text_list.append((scene_num, s_line.strip()))
+    
+    for i in s_text_list:
+        liness = i[1].split('\n\n')
+        for lines in liness:                                         
+            lines = re.findall(r'^([가-힣]{1,5}[0-9]?[a-z]?\s?)(\(V\.O\.\))?(\(V\.O\))?(\(v\.o\.\))?(\(v\.o\))?\s?(\(NA\))?(\(Na\))?(\(na\))?(\(N\))?(\s*)?\t{1,}(\s*)?([가-힣A-Za-z0-9\s\(\)\,\?\!\.\…]*)',lines)
+            for line in lines:
+                textd = line[11].replace('\n', '').strip()
+                textd = textd.replace('\t', '').strip()
+                textd = textd.replace('\s', '').strip()
+                texxt=re.sub(r'\(.*?\)', '', textd).strip()
+                for linee in re.split('[.!?]', texxt):    
+                    if len(re.sub(' ', '', linee)) >= 2:
+                        scenes.append((i[0], linee))                    
+    return scenes
+
+def coll(scenario_text):
+    scenes = []
+    scene_num = None
+    s_line = ''
+    s_text_list = []
+    for i in scenario_text.split('\n'):
+            new_scene_num = re.findall(r'^(?:\n)?(?:S#)?(?:#)?(?:#S)?(\d+)(\.)(.+)', i)
+            if new_scene_num:
+                if scene_num:
+                    s_text_list.append((scene_num, s_line.strip()))
+                s_line = ''
+                scene_num = new_scene_num[0]
+            else:
+                s_line += '\n' + i
+    
+    if scene_num:
+        s_text_list.append((scene_num, s_line.strip()))
+    
+    for i in s_text_list:
+        liness = i[1].split('\n\n')
+        for lines in liness:                                         
+            lines = re.findall(r'^([가-힣]{1,5}[0-9]?[a-z]?\s?)(\(V\.O\.\))?(\(V\.O\))?(\(v\.o\.\))?(\(v\.o\))?\s?(\(NA\))?(\(Na\))?(\(na\))?(\(N\))?(\s*)?\t{1,}(\s*)?([가-힣A-Za-z0-9\s\(\)\,\?\!\.\…]*)',lines)
+            for line in lines:
+                textd = line[11].replace('\n', '').strip()
+                textd = textd.replace('\t', '').strip()
+                textd = textd.replace('\s', '').strip()
                 texxt=re.sub(r'\(.*?\)', '', textd).strip()
                 for linee in re.split('[.!?]', texxt):    
                     if len(re.sub(' ', '', linee)) >= 2:
                         scenes.append((i[0], linee))
                     
-
     return scenes
 
 def parse_movie_dialogues(movie_dialogue_text):
@@ -80,7 +135,7 @@ def compare_dialogues(scenes, movie_dialogues, model, threshold=0.5):
 
     detailed_results = []
     scene_sentences = [sentence for scene, sentence in scenes]
-    scene_embeddings = model.encode(scene_sentences)
+    scene_embeddings = model.encode(scene_sentences)    # From Web
 
     if len(scene_sentences) == 0 or len(movie_dialogues) == 0:
         return []
@@ -90,7 +145,7 @@ def compare_dialogues(scenes, movie_dialogues, model, threshold=0.5):
     for dialogue in movie_dialogues:
         dialogue_sentences = re.split(r'(?<=[.!?])\s+', dialogue.strip())
         for dialogue_sentence in dialogue_sentences:
-            dialogue_embedding = model.encode([dialogue_sentence])[0]
+            dialogue_embedding = model.encode([dialogue_sentence])[0]   # From Web
             similarities = util.cos_sim(dialogue_embedding, scene_embeddings)[0]
 
             best_match_idx = -1
@@ -140,11 +195,11 @@ def refine_comparisons(best_scene_order, scenes, movie_dialogues, model, thresho
     for dialogue in movie_dialogues:
         dialogue_sentences = re.split(r'(?<=[.!?])\s+', dialogue.strip())
         for dialogue_sentence in dialogue_sentences:
-            dialogue_embedding = model.encode([dialogue_sentence])[0]
+            dialogue_embedding = model.encode([dialogue_sentence])[0]   # From Web
             similarities = []
             for idx, (scene, sentence) in enumerate(scenes):
                 if scene in best_scene_order and idx not in used_scene_indices:
-                    sentence_embedding = model.encode([sentence])[0]
+                    sentence_embedding = model.encode([sentence])[0]    # From Web
                     similarity = util.cos_sim(dialogue_embedding, sentence_embedding).item()
                     similarities.append((idx, scene, sentence, similarity))
 
@@ -180,30 +235,22 @@ def filter_non_consecutive_scenes(results):
     return filtered_results
 
 def main(scenario_text, movie_dialogue_text):
-    # 모델 로드
-    model = SentenceTransformer('jhgan/ko-sbert-sts')
+    model = SentenceTransformer('snunlp/KR-SBERT-V40K-klueNLI-augSTS')  # From Web
 
-    # 시나리오 및 영화 대사 파싱
     scenes = parse_scenario(scenario_text)
     movie_dialogues = parse_movie_dialogues(movie_dialogue_text)
 
-    # 대사 비교
     detailed_results = compare_dialogues(scenes, movie_dialogues, model, threshold=0.6)
 
-    # 최적의 씬 순서 찾기
     best_scene_order = get_best_scene_order(detailed_results)
 
-    # 최적의 씬 순서로 텍스트 비교
     refined_results = refine_comparisons(best_scene_order, scenes, movie_dialogues, model, threshold=0.6)
 
-    # 두 번 이상 연속되지 않은 씬 필터링
     filtered_results = filter_non_consecutive_scenes(refined_results)
 
-    # 최적의 씬 순서 결과 출력
     print("\n최적의 씬 순서:")
     print(best_scene_order)
 
-    # 각 영화 대사에 대해 가장 유사한 씬 문장과 그 씬을 출력
     print("\n영화 대사와 유사한 씬 문장 비교 결과:")
     for result in filtered_results:
         movie_dialogue, best_match_sentence, scene, similarity = result
@@ -212,3 +259,5 @@ def main(scenario_text, movie_dialogue_text):
     del model
 
     return filtered_results
+
+# Rest of code lines are made

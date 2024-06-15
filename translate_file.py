@@ -3,6 +3,7 @@ from docx import Document
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
+# Made
 num_count = 0
 
 def extract_audio_from_video(video_file_path, audio_file_path, path):
@@ -45,9 +46,6 @@ def open_docx(docx_file_path, path):
     return result
 
 def main(video_file, audio_file, docx_file, path):
-    # video_file = 'INPUT NAME OF VIDEO.mp4'
-    # audio_file = 'OUTPUT NAME OF AUDIO.wav'
-    # docx_file = './input/INPUT NAME OF DOCX.docx'
-    
     extract_audio_from_video(video_file, audio_file, path)
     return audio_file, open_docx(docx_file, path)
+# Made

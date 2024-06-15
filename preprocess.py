@@ -1,6 +1,6 @@
 import re
-import subprocess
 
+# Made
 def check_blank(sc, dia, comment, blank):
     result = list()
     pn_sn = 0
@@ -22,6 +22,8 @@ def check_blank(sc, dia, comment, blank):
                         break
                 
                 if temp != -1 and temp2 != -1:
+                    if sc[temp2-1]["text"] == "" or sc[temp2-1]["text"] == None or sc[temp2-1]["text"] == '\n':
+                        pass
                     if sc[temp2-1]["sn"] != pn_sn and sc[temp2-1]["person"] == "none":
                         result.append({"start": b["speak1"], "end": b["speak2"], "text": sc[temp2-1]["text"], "sn": pn_sn, "sc": sc[temp2-1]})
                         
@@ -42,12 +44,12 @@ def check_blank(sc, dia, comment, blank):
                 if temp != -1 and temp2 != -1:
                     if sc[temp2+1]["sn"] != pn_sn:
                         break
+                    if sc[temp2+1]["text"] == "" or sc[temp2+1]["text"] == None or sc[temp2+1]["text"] == None:
+                        pass
                     if sc[temp2+1]["person"] == "none":
                         result.append({"start": b["speak1"], "end": b["speak2"], "text": sc[temp2+1]["text"], "sn": pn_sn})
                         break
             
-    
-    # 시간이 긴 순서대로 (중복일 경우)
     unique_results = {}
     
     for r in result:
@@ -76,7 +78,6 @@ def taptap(textt):
         if len(line) == 0:
             continue
         
-        # 씬헤드라인 구분
         if re.match(r'^(?:\n)?(?:S#)?(?:#)?(?:#S)?(\d+)', line):
             match = re.match(r'^(?:\n)?(?:S#)?(?:#)?(?:#S)?(\d+)(\.)?(.+)', line)
             snum = match.group(1)
@@ -118,7 +119,6 @@ def newnew(textt):
     
         if len(line) == 0:
             continue
-        # 씬헤드라인 구분
         if re.match(r'^(?:\n)?(?:S#)?(?:#)?(?:#S)?(\d+)(\.)?(.+)', line):
             match = re.match(r'^(?:\n)?(?:S#)?(?:#)?(?:#S)?(\d+)(\.)?(.+)', line)
             snum = match.group(1)
@@ -162,7 +162,6 @@ def colcol(textt):
     
         if len(line) == 0:
             continue
-        # 씬헤드라인 구분
         if re.match(r'^(?:\n)?(?:S#)?(?:#)?(?:#S)?(\d+)(\.)?(.+)', line):
             match = re.match(r'^(?:\n)?(?:S#)?(?:#)?(?:#S)?(\d+)(\.)?(.+)', line)
             snum = match.group(1)
@@ -193,43 +192,6 @@ def colcol(textt):
     return totalSS
 
 def main(text):
-    # textt=text.split('\n\n')
-
-    # totalSS = list()
-
-    # snum = 0
-    # flag_num = 0
-
-    # for line in textt:
-
-    #     if len(line) == 0:
-    #         continue
-    #     # 씬헤드라인 구분
-    #     if re.match(r'^(?:\n)?(\d+)(\.)(.+)', line):
-    #         match = re.match(r'^(?:\n)?(\d+)(\.)(.+)', line)
-    #         snum = match.group(1)
-    #         flag_num = 0
-
-    #         totalSS.append({'text': snum+'.'+match.group(3)  , 'person': 'none', 'start': 0 , 'end': 0, 'flag' : flag_num, 'sn':snum})
-
-    #     elif re.match(r'^([가-힣]{1,4}[0-9]?)(\(Na\))?(\n{1,}(.+))+',line):  # 배역과 대사
-    #         text = re.match(r'^([가-힣]{1,4}[0-9]?)(\(Na\))?\n{1,}(.+(\n)?)+',line, re.DOTALL) # Na 등은 반영되지 않음
-    #         textd = text.group(3).replace('\n', '').strip()
-    #         texxt=re.sub(r'\(.*?\)', '', textd).strip()
-    #         flag_num = 1
-
-    #         totalSS.append({'text': texxt  , 'person': text.group(1), 'start': 0 , 'end': 0, 'flag' : flag_num, 'sn':snum})
-    #     else:
-    #         delete=['CUT TO', 'cut to', 'Cut to', 'Cut To', '\n', '\t']
-    #         pattern = '|'.join(re.escape(word) for word in delete)
-    #         flag_num = 2
-
-    #         lineInfo = {'text': re.sub(pattern, '', line)  , 'person': 'none', 'start': 0 , 'end': 0, 'flag' : flag_num, 'sn':snum   }
-            
-    #         totalSS.append(lineInfo)
-
-
-    # return totalSS
     textt=text.split('\n\n')
     tt = []
     nn = []
@@ -257,3 +219,4 @@ def main(text):
         
     elif stype=='cc':
         return colcol(textt)
+# Made

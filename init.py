@@ -7,6 +7,7 @@ import translate_file
 import timing
 import preprocess
 
+# Made
 def main(args):
     if len(args) > 5: # default len(args) == 1, because of args[0] == "init.py" 
         sys.exit("Wrong Arguments Numbers")
@@ -21,12 +22,21 @@ def main(args):
     subprocess.run(["echo", "\nPyannote is running..."])
     blank, re_time = timing.main(root+'/output/'+audio_path, root=root)
 
+    with open(root+"/blank.pkl", "wb") as f:
+        pickle.dump(blank, f)
+
     # print("\nSpeech To Text is running...")
     subprocess.run(["echo", "\nSpeech To Text is running..."])
     dialogues = stt.main(root+'/output/'+audio_path, re_time, root)
 
+    with open(root+"/dialogues.pkl", 'wb') as f:
+        pickle.dump(dialogues, f)
+
     subprocess.run(["echo", "\nPreprocessing..."])
     scene = preprocess.main(docx)
+
+    with open(root+"/scene.pkl", 'wb') as f:
+        pickle.dump(scene, f)
 
     temp = ''
     for di in dialogues:
@@ -34,18 +44,10 @@ def main(args):
     subprocess.run(["echo", "\nChecking similarity..."])
 
     comment = sts.main(docx, temp)
- 
-    with open(root+"/scene.pkl", 'wb') as f:
-        pickle.dump(scene, f)
 
-    with open(root+"/dialogues.pkl", 'wb') as f:
-        pickle.dump(dialogues, f)
-    
     with open(root+"/comment.pkl", "wb") as f:
         pickle.dump(comment, f)
-    
-    with open(root+"/blank.pkl", "wb") as f:
-        pickle.dump(blank, f)
 
 if __name__ == '__main__':
     main(sys.argv)
+# Made

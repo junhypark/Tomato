@@ -2,7 +2,6 @@ import whisper
 from pydub import AudioSegment
 import os
 
-# wav split with time of pyannote
 def split_wav(timestamp, path, root):
     audio = AudioSegment.from_wav(path)
 
@@ -17,14 +16,13 @@ def split_wav(timestamp, path, root):
         
     return result
 
-# Whisper 모델 로드
 def trans(result):
-    model = whisper.load_model("medium")
+    model = whisper.load_model("medium")    # From Web
     
     raw_list = list()
     
     for i in result:
-        res = model.transcribe(i["path"], no_speech_threshold=0.4, language='korean')
+        res = model.transcribe(i["path"], no_speech_threshold=0.4, language='korean')   # From Web and Modified
         [raw_list.append({"start": i["t1"], "end": i["t2"], "text": j["text"]}) for j in res["segments"]]
         os.remove(i["path"])
 
@@ -32,8 +30,9 @@ def trans(result):
 
     return raw_list
 
-# 텍스트 정제
 def main(path, timestamp, root):
     transcribedText= trans(split_wav(timestamp, path, root))
 
     return transcribedText
+
+# Rest of code lines are made
