@@ -7,6 +7,10 @@ import re
 from moviepy.editor import VideoFileClip, AudioFileClip
 from transformers import PreTrainedTokenizerFast, BartForConditionalGeneration
 
+def decrease_volume(audio, db=10):
+    quiter_audio = audio - db
+
+    return quiter_audio
 
 def speed_up(path, speed=1.5):
     audio = AudioSegment.from_file(path)
@@ -23,7 +27,7 @@ def concat_wav(tts_list, fname, output_path='result.wav'):
         t1 = t["start"] * 1000
         t2 = t["end"] * 1000
         
-        og_blank = combined_audio[t1:t2]
+        og_blank = decrease_volume(combined_audio[t1:t2], db=20)
         blank = AudioSegment.from_file(t["path"])
         speed = 1.1
         blank_sec = blank.duration_seconds
