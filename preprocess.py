@@ -1,10 +1,7 @@
 import re
+import subprocess
 
 def check_blank(sc, dia, comment, blank):
-    # scene => [{text, person, start, end, flag, sn}]
-    # blank => [{speak1, speak2}]
-    # comment => filtered
-    # dia => movie_dialogue, start, end, best_match_sentence, scene, similarity, index = result
     result = list()
     pn_sn = 0
 
@@ -66,44 +63,197 @@ def check_blank(sc, dia, comment, blank):
     
     return result
 
-def main(text):
-    textt=text.split('\n\n')
-    textt
-
+def taptap(textt):
     totalSS = list()
-
-    snum = 0
+    delete=['CUT TO', 'cut to', 'Cut to', 'Cut To', '\n', '\t', '\s']
+    nt=['\n',]
+    pattern = '|'.join(re.escape(word) for word in delete)
+    aa = []
+    snum=0
     flag_num = 0
 
     for line in textt:
-
         if len(line) == 0:
             continue
+        
         # 씬헤드라인 구분
-        if re.match(r'^(?:\n)?(\d+)(\.)(.+)', line):
-            match = re.match(r'^(?:\n)?(\d+)(\.)(.+)', line)
+        if re.match(r'^(?:\n)?(?:S#)?(?:#)?(?:#S)?(\d+)', line):
+            match = re.match(r'^(?:\n)?(?:S#)?(?:#)?(?:#S)?(\d+)(\.)?(.+)', line)
             snum = match.group(1)
             flag_num = 0
-
+    
             totalSS.append({'text': snum+'.'+match.group(3)  , 'person': 'none', 'start': 0 , 'end': 0, 'flag' : flag_num, 'sn':snum})
-
-        elif re.match(r'^([가-힣]{1,4}[0-9]?)(\(Na\))?(\n{1,}(.+))+',line):  # 배역과 대사
-            text = re.match(r'^([가-힣]{1,4}[0-9]?)(\(Na\))?\n{1,}(.+(\n)?)+',line, re.DOTALL) # Na 등은 반영되지 않음
-            textd = text.group(3).replace('\n', '').strip()
+    
+    
+        elif re.match(r'([가-힣]{1,5}[0-9]?[a-z]?\s?)(\(V\.O\.\))?(\(V\.O\))?(\(v\.o\.\))?(\(v\.o\))?\s?(\(NA\))?(\(Na\))?(\(na\))?(\(N\))?(\s*)?\t{1,}(\s*)?([가-힣A-Za-z0-9\s\(\)\,\?\!\.\…]*)',line): # 배역과 대사
+            text = re.match(r'([가-힣]{1,5}[0-9]?[a-z]?\s?)(\(V\.O\.\))?(\(V\.O\))?(\(v\.o\.\))?(\(v\.o\))?\s?(\(NA\))?(\(Na\))?(\(na\))?(\(N\))?(\s*)?\t{1,}(\s*)?([가-힣A-Za-z0-9\s\(\)\,\?\!\.\…]*)',line, re.DOTALL) # Na 등은 반영되지 않음
+            textd = text.group(12).replace('\n', '').strip()
+            textd = textd.replace('\t', '').strip()
             texxt=re.sub(r'\(.*?\)', '', textd).strip()
             flag_num = 1
-
+    
             totalSS.append({'text': texxt  , 'person': text.group(1), 'start': 0 , 'end': 0, 'flag' : flag_num, 'sn':snum})
+    
+    
         else:
             delete=['CUT TO', 'cut to', 'Cut to', 'Cut To', '\n', '\t']
             pattern = '|'.join(re.escape(word) for word in delete)
             flag_num = 2
-
+    
             lineInfo = {'text': re.sub(pattern, '', line)  , 'person': 'none', 'start': 0 , 'end': 0, 'flag' : flag_num, 'sn':snum   }
             
             totalSS.append(lineInfo)
 
-
     return totalSS
 
-   
+def newnew(textt):
+    totalSS = list()
+    delete=['CUT TO', 'cut to', 'Cut to', 'Cut To', '\n', '\t']
+    pattern = '|'.join(re.escape(word) for word in delete)
+
+    snum = 0
+    flag_num = 0
+    
+    for line in textt:
+    
+        if len(line) == 0:
+            continue
+        # 씬헤드라인 구분
+        if re.match(r'^(?:\n)?(?:S#)?(?:#)?(?:#S)?(\d+)(\.)?(.+)', line):
+            match = re.match(r'^(?:\n)?(?:S#)?(?:#)?(?:#S)?(\d+)(\.)?(.+)', line)
+            snum = match.group(1)
+            flag_num = 0
+    
+            totalSS.append({'text': snum+'.'+match.group(3)  , 'person': 'none', 'start': 0 , 'end': 0, 'flag' : flag_num, 'sn':snum})
+    
+    
+        elif re.match(r'^([가-힣]{1,5}[0-9]?[A-z]?[a-z]?\s?)(\(V\.O\.\))?(\(V\.O\))?(\(v\.o\.\))?(\(v\.o\))?\s?(\(NA\))?(\(Na\))?(\(na\))?(\(N\))?(\s*)?\n{1,}(\s*)?([가-힣A-Za-z0-9\s\(\)\,\?\!\.\…]*)',line):  # 배역과 대사
+            text = re.match(r'^([가-힣]{1,5}[0-9]?[A-z]?[a-z]?\s?)(\(V\.O\.\))?(\(V\.O\))?(\(v\.o\.\))?(\(v\.o\))?\s?(\(NA\))?(\(Na\))?(\(na\))?(\(N\))?(\s*)?\n{1,}(\s*)?([가-힣A-Za-z0-9\s\(\)\,\?\!\.\…]*)',line, re.DOTALL) # Na 등은 반영되지 않음
+            #text = re.match(r'^([가-힣]{1,5}[0-9]?[a-z]?\s?)(\(V\.O\.\)?(\(V\.O\))?(\(v\.o\.\))?(\(v\.o\))?\s?(\(NA\))?(\(Na\))?(\(na\))?(\(N\))?(\s*)?\n{1,}(\s*)?([가-힣A-Za-z0-9\s\(\)\,\?\!\.\…]*)',line, re.DOTALL)
+            textd = text.group(12).replace('\n', '').strip()
+            textd = textd.replace('\t', '').strip()
+            texxt=re.sub(r'\(.*?\)', '', textd).strip()
+            flag_num = 1
+    
+            totalSS.append({'text': texxt  , 'person': text.group(1), 'start': 0 , 'end': 0, 'flag' : flag_num, 'sn':snum})
+    
+    
+        else:
+            delete=['CUT TO', 'cut to', 'Cut to', 'Cut To', '\n', '\t']
+            pattern = '|'.join(re.escape(word) for word in delete)
+            flag_num = 2
+    
+            lineInfo = {'text': re.sub(pattern, '', line)  , 'person': 'none', 'start': 0 , 'end': 0, 'flag' : flag_num, 'sn':snum   }
+            
+            totalSS.append(lineInfo)
+    
+    return totalSS
+
+def colcol(textt):
+    totalSS = list()
+    delete=['CUT TO', 'cut to', 'Cut to', 'Cut To', '\n', '\t']
+    pattern = '|'.join(re.escape(word) for word in delete)    
+    aa = []
+
+    snum = 0
+    flag_num = 0
+    
+    for line in textt:
+    
+        if len(line) == 0:
+            continue
+        # 씬헤드라인 구분
+        if re.match(r'^(?:\n)?(?:S#)?(?:#)?(?:#S)?(\d+)(\.)?(.+)', line):
+            match = re.match(r'^(?:\n)?(?:S#)?(?:#)?(?:#S)?(\d+)(\.)?(.+)', line)
+            snum = match.group(1)
+            flag_num = 0
+    
+            totalSS.append({'text': snum+'.'+match.group(3)  , 'person': 'none', 'start': 0 , 'end': 0, 'flag' : flag_num, 'sn':snum})
+    
+    
+        elif re.match(r'[가-힣]{1,}(\(V\.O\.\))?(\(V\.O\))?(\(v\.o\.\))?(\(v\.o\))?\s?(\(NA\))?(\(Na\))?(\(na\))?(\(N\))?(\s*)?(\s)*\:([가-힣A-Za-z0-9\s\(\)\,\?\!\.\…]*)',line):  # 배역과 대사
+            text = re.match(r'([가-힣]{1,5}[0-9]?[a-z]?\s?)(\(V\.O\.\))?(\(V\.O\))?(\(v\.o\.\))?(\(v\.o\))?\s?(\(NA\))?(\(Na\))?(\(na\))?(\(N\))?(\s*)?(\s)*\:([가-힣A-Za-z0-9\s\(\)\,\?\!\.\…]*)',line, re.DOTALL) # Na 등은 반영되지 않음
+            textd = text.group(12).replace('\n', '').strip()
+            textd = textd.replace('\t', '').strip()
+            texxt=re.sub(r'\(.*?\)', '', textd).strip()
+            flag_num = 1
+    
+            totalSS.append({'text': texxt  , 'person': text.group(1), 'start': 0 , 'end': 0, 'flag' : flag_num, 'sn':snum})
+    
+    
+        else:
+            delete=['CUT TO', 'cut to', 'Cut to', 'Cut To', '\n', '\t']
+            pattern = '|'.join(re.escape(word) for word in delete)
+            flag_num = 2
+    
+            lineInfo = {'text': re.sub(pattern, '', line)  , 'person': 'none', 'start': 0 , 'end': 0, 'flag' : flag_num, 'sn':snum   }
+            
+            totalSS.append(lineInfo)
+    
+    return totalSS
+
+def main(text):
+    # textt=text.split('\n\n')
+
+    # totalSS = list()
+
+    # snum = 0
+    # flag_num = 0
+
+    # for line in textt:
+
+    #     if len(line) == 0:
+    #         continue
+    #     # 씬헤드라인 구분
+    #     if re.match(r'^(?:\n)?(\d+)(\.)(.+)', line):
+    #         match = re.match(r'^(?:\n)?(\d+)(\.)(.+)', line)
+    #         snum = match.group(1)
+    #         flag_num = 0
+
+    #         totalSS.append({'text': snum+'.'+match.group(3)  , 'person': 'none', 'start': 0 , 'end': 0, 'flag' : flag_num, 'sn':snum})
+
+    #     elif re.match(r'^([가-힣]{1,4}[0-9]?)(\(Na\))?(\n{1,}(.+))+',line):  # 배역과 대사
+    #         text = re.match(r'^([가-힣]{1,4}[0-9]?)(\(Na\))?\n{1,}(.+(\n)?)+',line, re.DOTALL) # Na 등은 반영되지 않음
+    #         textd = text.group(3).replace('\n', '').strip()
+    #         texxt=re.sub(r'\(.*?\)', '', textd).strip()
+    #         flag_num = 1
+
+    #         totalSS.append({'text': texxt  , 'person': text.group(1), 'start': 0 , 'end': 0, 'flag' : flag_num, 'sn':snum})
+    #     else:
+    #         delete=['CUT TO', 'cut to', 'Cut to', 'Cut To', '\n', '\t']
+    #         pattern = '|'.join(re.escape(word) for word in delete)
+    #         flag_num = 2
+
+    #         lineInfo = {'text': re.sub(pattern, '', line)  , 'person': 'none', 'start': 0 , 'end': 0, 'flag' : flag_num, 'sn':snum   }
+            
+    #         totalSS.append(lineInfo)
+
+
+    # return totalSS
+    textt=text.split('\n\n')
+    tt = []
+    nn = []
+    cc = []
+
+    for line in textt:
+        t = re.findall(r'[가-힣]{1,}(\(V\.O\.\))?\s?(\(NA\))?(\s*)?\t{1,}(\s*)?([가-힣A-Za-z0-9\s\(\)\,\?\!\.\…]*)',line)
+        if len(t) !=0 :
+            tt.append(line)
+        n = re.findall(r'^(\(?[가-힣]{1,}\)?(\(V\.O\.\))?\s?(\(Na\))?\n{1,})([가-힣\.\,\!\?\s\t]*)',line)
+        if len(n) !=0:
+            nn.append(line)
+        c = re.findall(r'[가-힣]{1,}(\(V\.O\.\))?\s?(\(NA\))?(\s)*\:([가-힣A-Za-z0-9\s\(\)\,\?\!\.\…]*)',line)
+        if len(c) !=0:
+            cc.append(line)
+
+    listtype=[('tt', tt), ('nn', nn), ('cc', cc)]
+    stype = max(listtype, key=lambda k: len(k[1]))[0]
+
+    if stype=='tt':
+        return taptap(textt)
+        
+    elif stype=='nn':
+        return newnew(textt)
+        
+    elif stype=='cc':
+        return colcol(textt)

@@ -5,16 +5,16 @@ import pickle
 
 
 def main(args):
-    with open('scene.pkl', 'rb') as f:
-        scene = pickle.load(f)
-    with open('dialogues.pkl', 'rb') as f:
-        dialogues = pickle.load(f)
-    with open('comment.pkl', 'rb') as f:
-        comment = pickle.load(f)
-    with open('blank.pkl', 'rb') as f:
-        blank = pickle.load(f)
+    video_path, audio_path, root = args[1], args[2], args[3]
 
-    video_path, audio_path = args[1], args[2]
+    with open(root+'/scene.pkl', 'rb') as f:
+        scene = pickle.load(f)
+    with open(root+'/dialogues.pkl', 'rb') as f:
+        dialogues = pickle.load(f)
+    with open(root+'/comment.pkl', 'rb') as f:
+        comment = pickle.load(f)
+    with open(root+'/blank.pkl', 'rb') as f:
+        blank = pickle.load(f)
     
     print("\nChecking Blank...")
     final = preprocess.check_blank(scene, dialogues, comment, blank)
@@ -23,7 +23,7 @@ def main(args):
         print(f, '\n')
 
     print("\nMaking Speech for Comment...")
-    tts.main(final, 'output/'+audio_path, 'input/'+video_path)
+    tts.main(final, root+'/output/'+audio_path, root+'/input/'+video_path, path=root)
 
 if __name__ == '__main__':
     print(sys.argv)

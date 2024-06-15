@@ -14,7 +14,7 @@ def speed_up(path, speed=1.5):
 
     return math.ceil(ad_audio.duration_seconds), ad_audio
     
-def concat_wav(tts_list, fname, output_path='result.wav'):
+def concat_wav(tts_list, fname, path, output_path='/result.wav'):
     duration = AudioSegment.from_file(fname)
     
     combined_audio = duration[:]
@@ -42,17 +42,17 @@ def concat_wav(tts_list, fname, output_path='result.wav'):
         
         combined_audio = combined_audio[:t1] + overlayed_segment + combined_audio[t2:]
     
-    combined_audio.export(output_path, format="wav")
+    combined_audio.export(path + output_path, format="wav")
 
-def over_mp4(mp4, wav="./result.wav"):
+def over_mp4(mp4, path, wav="/result.wav"):
     video = VideoFileClip(mp4)
-    new_audio = AudioFileClip(wav)
+    new_audio = AudioFileClip(path+wav)
     new_audio = new_audio.volumex(1.0)
 
     video = video.set_audio(new_audio)
-    video.write_videofile('./output/result.mp4', codec='libx264', audio_codec='aac')
+    video.write_videofile(path+'/output/result.mp4', codec='libx264', audio_codec='aac')
 
-def main(comment, fname, mp4):
+def main(comment, fname, mp4, path):
     # comment = [{start, end, text}]
     tts_list = list()
 
@@ -62,7 +62,7 @@ def main(comment, fname, mp4):
     speaker_ids = model.hps.data.spk2id
 
     # model loading to revise scenario comment 
-    model_path = 'train/model'
+    model_path = path+'/train/model'
     tokenizer = PreTrainedTokenizerFast.from_pretrained(model_path)
     paraphrase_model = BartForConditionalGeneration.from_pretrained(model_path)
     
@@ -70,7 +70,7 @@ def main(comment, fname, mp4):
     for cm in comment:
         # tts = gTTS(text = cm["text"], lang='ko', slow=False)
         # tts.save("comment" + str(cm["start"]) + ".wav")
-        wav_path = "comment" + str(cm["start"]) + ".wav"
+        wav_path = path+"/comment" + str(cm["start"]) + ".wav"
 
         inputs = tokenizer(cm["text"], max_length=512, truncation=True, return_tensors="pt")
         output_tokens = paraphrase_model.generate(inputs["input_ids"], max_length=256, num_beams=5, early_stopping=True)
@@ -79,10 +79,10 @@ def main(comment, fname, mp4):
         revised_comment = re.sub(r' +', r' ', revised_comment)
 
         model.tts_to_file(revised_comment, speaker_ids["KR"], wav_path, speed=speed)
-        tts_list.append({"start": cm["start"], "end": cm["end"], "path": "./comment" + str(cm["start"]) + ".wav"})
+        tts_list.append({"start": cm["start"], "end": cm["end"], "path": path+"/comment" + str(cm["start"]) + ".wav"})
 
-    concat_wav(tts_list, fname)
-    over_mp4(mp4)
+    concat_wav(tts_list, fname, path)
+    over_mp4(mp4, path)
 
 if __name__ == '__main__':
     main()
