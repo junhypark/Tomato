@@ -1,6 +1,12 @@
+read -p "Enter the root path name : " root_path
 read -p "Enter the input video file name : " video_file
 read -p "Enter the input docx file name : " docx_file
 read -p "Enter the name of output wav file name : " wav_file
+
+if [ -z "$root_path" ]; then
+    echo "Error: Root path name is required."
+    exit 1
+fi
 
 if [ -z "$video_file" ]; then
     echo "Error: Video file name is required."

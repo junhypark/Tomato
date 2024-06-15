@@ -3,7 +3,7 @@ from pydub import AudioSegment
 import os
 
 # wav split with time of pyannote
-def split_wav(timestamp, path):
+def split_wav(timestamp, path, root):
     audio = AudioSegment.from_wav(path)
 
     result = list()
@@ -12,8 +12,8 @@ def split_wav(timestamp, path):
         t1 = i["start"] * 1000
         t2 = i["end"] * 1000
         split_audio = audio[t1:t2]
-        split_audio.export('temp_wav/temp'+str(t1)+'.wav', format="wav")
-        result.append({"path":'temp_wav/temp'+str(t1)+'.wav', "t1": t1/1000, "t2": t2/1000})
+        split_audio.export(root+'/temp_wav/temp'+str(t1)+'.wav', format="wav")
+        result.append({"path":root+'/temp_wav/temp'+str(t1)+'.wav', "t1": t1/1000, "t2": t2/1000})
         
     return result
 
@@ -33,7 +33,7 @@ def trans(result):
     return raw_list
 
 # 텍스트 정제
-def main(path, timestamp):
-    transcribedText= trans(split_wav(timestamp, path))
+def main(path, timestamp, root):
+    transcribedText= trans(split_wav(timestamp, path, root))
 
     return transcribedText

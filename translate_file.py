@@ -5,10 +5,10 @@ from docx.oxml import OxmlElement
 
 num_count = 0
 
-def extract_audio_from_video(video_file_path, audio_file_path):
-    video = VideoFileClip("./input/"+video_file_path)
+def extract_audio_from_video(video_file_path, audio_file_path, path):
+    video = VideoFileClip(path+"/input/"+video_file_path)
 
-    video.audio.write_audiofile("./output/"+audio_file_path, codec='pcm_s16le')
+    video.audio.write_audiofile(path+"/output/"+audio_file_path, codec='pcm_s16le')
 
 def is_list(paragraph):
     p = paragraph._element
@@ -32,8 +32,8 @@ def get_list_number(paragraph):
         return f"{num_id+num_count-1}."
     return ""
 
-def open_docx(docx_file_path):
-    doc = Document('./input/'+docx_file_path)
+def open_docx(docx_file_path, path):
+    doc = Document(path+'/input/'+docx_file_path)
     result = ''
 
     for paragraph in doc.paragraphs:
@@ -44,10 +44,10 @@ def open_docx(docx_file_path):
             result += paragraph.text + "\n"
     return result
 
-def main(video_file, audio_file, docx_file):
+def main(video_file, audio_file, docx_file, path):
     # video_file = 'INPUT NAME OF VIDEO.mp4'
     # audio_file = 'OUTPUT NAME OF AUDIO.wav'
     # docx_file = './input/INPUT NAME OF DOCX.docx'
     
-    extract_audio_from_video(video_file, audio_file)
-    return audio_file, open_docx(docx_file)
+    extract_audio_from_video(video_file, audio_file, path)
+    return audio_file, open_docx(docx_file, path)

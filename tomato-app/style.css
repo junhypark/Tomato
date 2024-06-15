@@ -237,6 +237,34 @@ p {
     transform: scale(1.05);
 }
 
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.checkbox-group {
+    display: flex;
+    gap: 0px;
+    align-items: center;
+}
+
+.checkbox-group label {
+    margin-right: 5px;
+}
+
 .loader {
     border: 8px solid #f3f3f3;
     border-top: 8px solid #ff4d4d;

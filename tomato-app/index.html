@@ -16,8 +16,9 @@
         <div class="steps-bar">
             <div class="step-item active" id="step-1" onclick="goToStep(1)">Step 1: Upload a Video</div>
             <div class="step-item" id="step-2" onclick="goToStep(2)">Step 2: Upload a docx</div>
-            <div class="step-item" id="step-3" onclick="goToStep(3)">Step 3: Processing</div>
-            <div class="step-item" id="step-4" onclick="goToStep(4)">Step 4: Complete</div>
+            <div class="step-item" id="step-3" onClick="goToStep(3)">Step 3: Input Arguments</div>
+            <div class="step-item" id="step-4" onclick="goToStep(4)">Step 4: Processing</div>
+            <div class="step-item" id="step-5" onclick="goToStep(5)">Step 5: Complete</div>
         </div>
         <div class="steps">
             <div class="step active" id="step1">
@@ -42,14 +43,27 @@
                     </label>
                     <p class="file-name" id="file-file-name"></p>
                 </div>
-                <button class="next-button" onclick="uploadFiles()">Next</button>
+                <button class="next-button" onclick="nextStep(3)">Next</button>
             </div>
             <div class="step" id="step3">
+                <h2>Input some values</h2>
+                <p>Enter following values</p>
+                <div class="input-group">
+                    <label for="wsl-path">Path for Tomato in WSL</label>
+                    <input type="text" id="wsl-path" name="wsl-path">
+                </div>
+                <div class="input-group">
+                    <label for="conda-env">Conda Environment Name</label>
+                    <input type="text" id="conda-env" name="conda-env">
+                </div>
+                <button class="next-button" onclick="uploadFiles()">Next</button>
+            </div>
+            <div class="step" id="step4">
                 <h2>Processing</h2>
                 <div class="loader"></div>
                 <p>Please wait while we process your files to create audio descriptions...</p>
             </div>
-            <div class="step" id="step4">
+            <div class="step" id="step5">
                 <h2>Complete</h2>
                 <p>Your audio descriptions have been generated.</p>
                 <a href="#" id="download-link" class="download-button">Download</a>
