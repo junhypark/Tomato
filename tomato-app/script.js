@@ -23,6 +23,8 @@ function handleFileUpload(event) {
 async function uploadFiles() {
     const videoInput = document.getElementById('video');
     const fileInput = document.getElementById('file');
+    const wslPathInput = document.getElementById('wsl-path');
+    const condaEnvInput = document.getElementById('conda-env');
 
     if (!videoInput.files.length || !fileInput.files.length) {
         console.error('No files selected');
@@ -32,9 +34,11 @@ async function uploadFiles() {
     const formData = new FormData();
     formData.append('video', videoInput.files[0]);
     formData.append('file', fileInput.files[0]);
+    formData.append('wslPath', wslPathInput.value);
+    formData.append('condaEnv', condaEnvInput.value);
 
     console.log('Uploading files...');
-    nextStep(3);
+    nextStep(4);
     try {
         const response = await fetch('http://127.0.0.1:3001/upload', {
             method: 'POST',
@@ -45,7 +49,7 @@ async function uploadFiles() {
             const result = await response.json();
             console.log('Files uploaded successfully:', result);
             window.resultFilePath = result.output;
-            nextStep(4);
+            nextStep(5);
         } else {
             const error = await response.json();
             console.error('File upload failed', error);
@@ -68,7 +72,7 @@ function nextStep(step) {
 
     updateNextButton(step);
 
-    if (step === 4) {
+    if (step === 5) {
         const downloadLink = document.getElementById('download-link');
         downloadLink.href = `http://127.0.0.1:3001/download?path=${encodeURIComponent(window.resultFilePath)}`;
         downloadLink.style.display = 'block';
