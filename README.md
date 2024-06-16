@@ -149,6 +149,25 @@ For fine-tunining the model with your data, the dataset information used to trai
 
 In the "Original" column, you have to put in original movie description, and the "Paraphrased" column, you have to put in paraphrased original movie description
 
+> ### Data
+> * [Example data](https://github.com/junhypark/Tomato/blob/main/train/data/train_sample.csv) is in "/train/data"
+
+> ### Fine-tuning
+> * Please change [train_koBART.py](https://github.com/junhypark/Tomato/blob/main/train/train_koBART.py) into your data
+> * The data type is "_.csv"
+
+            ...
+            def main():
+                data_path = "YOUR_DATA_FILE_PATH"
+            ...
+
+> * For example
+
+            ...
+            def main():
+                data_path = "./my_data/train.csv"
+            ...
+            
 ---
 
 ## 1-6. Additional Library
