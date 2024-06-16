@@ -6,15 +6,17 @@
 
 # 0. Instruction
 
-> * You should prepare  "_*.mp4_" file and "_*.docx_" file (which is movie scenario)
+> * You should prepare  "_.mp4_" file and "_.docx_" file (which is movie scenario)
 > * When movie and scenario file are prepared, you have to put your files in "input" folder
-> * Then, just run "run.sh" on the Linux OS. We recommend to use Ubuntu 20.04
+> * Then, just run "run.sh" or "runconda.sh" on the Linux OS. We recommend to use Ubuntu 20.04
 
 * If you ran "run.sh", you will see the command line as below
-![image](https://github.com/junhypark/Tomato/assets/164970413/2da79014-8802-449d-a946-03e020aa147f)
 
-And if your Python environment is set up correctly, you will convert the scenario and movie files into barrier-free movies correctly
-(But this will take a long time and computer resources to complete)
+![image](https://github.com/junhypark/Tomato/assets/58024443/ee6fd60a-851d-4e03-967a-98711a6363d1)
+
+And if your Python environment is set up correctly, you will convert the scenario and movie files into barrier-free movies
+
+> (But this will take a long time and computer resources to complete)
 
 * If you are using ```Anaconda``` Environemnt, please install torch using **conda**, not pip command
 
@@ -23,10 +25,11 @@ And if your Python environment is set up correctly, you will convert the scenari
             pip uninstall torch torchvision torchaudio
             conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 -c pytorch
 
-> We recommed you to use Anaconda Environment
+> ### We recommed you to use Anaconda Environment
 
 * Via Anaconda, please use "runconda.sh", the example is below
-![image](https://github.com/junhypark/Tomato/assets/58024443/278890fb-b5ba-4245-8477-db34a2511e8c)
+
+![image](https://github.com/junhypark/Tomato/assets/58024443/fa7324b4-2c7d-4090-af24-1677de5583a1)
 
 ---
 # 1. Models
