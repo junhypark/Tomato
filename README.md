@@ -6,12 +6,12 @@
 
 # 0. Instruction
 
-> * You should prepare  "_.mp4_" file and "_.docx_" file (which is movie scenario)
-> * When movie and scenario file are prepared, you have to put your files in "input" folder
-> * Then, just run "run.sh" or "runconda.sh" on the Linux OS. We recommend to use Ubuntu 20.04
+> * You should prepare  *_.mp4_* file and *_.docx_* file (which is movie scenario)
+> * When movie and scenario file are prepared, you have to put your files in *input* folder
+> * Then, just run *run.sh* or *runconda.sh* on the Linux OS. We recommend to use Ubuntu 20.04
 
-* If you ran "run.sh", you will see the command line as below
-* NOTICE! activate correct conda environment before executing "run.sh"
+* If you ran *run.sh*, you will see the command line as below
+* NOTICE! activate correct conda environment before executing *run.sh*
 
 ![image](https://github.com/junhypark/Tomato/assets/58024443/ee6fd60a-851d-4e03-967a-98711a6363d1)
 
@@ -21,14 +21,14 @@ And if your Python environment is set up correctly, you will convert the scenari
 
 * If you are using ```Anaconda``` Environemnt, please install torch using **conda**, not pip command
 
-> If you already installed "torch, torchvision, torchaudio" via pip, please uninstall and download via conda
+> If you already installed *torch, torchvision, torchaudio* via pip, please uninstall and download via conda
 
             pip uninstall torch torchvision torchaudio
             conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 -c pytorch
 
 > ### We recommed you to use Anaconda Environment
 
-* Via Anaconda, please use "runconda.sh", the example is below
+* Via Anaconda, please use *runconda.sh*, the example is below
 
 ![image](https://github.com/junhypark/Tomato/assets/58024443/fa7324b4-2c7d-4090-af24-1677de5583a1)
 
@@ -149,16 +149,16 @@ We deployed fine-tuned model on [Google-Drive](https://drive.google.com/drive/fo
 
 For fine-tunining the model with your data, the dataset information used to train the model is as follows
 - Columns : Original, Paraphrased
-- format of Dataset : "_.csv_"
+- format of Dataset : *_.csv_*
 
-In the "Original" column, you have to put in original movie description, and the "Paraphrased" column, you have to put in paraphrased original movie description
+In the *Original* column, you have to put in original movie description, and the *Paraphrased* column, you have to put in paraphrased original movie description
 
 > ### Data
-> * [Example data](https://github.com/junhypark/Tomato/blob/main/train/data/train_sample.csv) is in "/train/data"
+> * [Example data](https://github.com/junhypark/Tomato/blob/main/train/data/train_sample.csv) is in */train/data*
 
 > ### Fine-tuning
 > * Please change [train_koBART.py](https://github.com/junhypark/Tomato/blob/main/train/train_koBART.py) into your data
-> * The data type is "_.csv"
+> * The data type is *_.csv*
 
             ...
             def main():
@@ -222,15 +222,15 @@ Set your terminal into proper folder path
 
 It will automatically, run WSL and python file
 
-1. input "_.mp4" file
+1. input *_.mp4* file
 
 ![image](https://github.com/junhypark/Tomato/assets/58024443/50f0884e-6c4a-4144-8863-73c252fb2e8d)
 
-2. input "_.docx" file
+2. input *_.docx* file
 
 ![image](https://github.com/junhypark/Tomato/assets/58024443/78fc0b96-a897-4ba2-a405-8ea9c820016b)
 
-3. input "absolute path in WSL" and "conda env name"
+3. input *absolute path in WSL* and *conda env name*
 
 ex)
 
@@ -247,4 +247,4 @@ ex)
 ![image](https://github.com/junhypark/Tomato/assets/58024443/da8a15ec-dc87-46ee-9501-0a70f8511d62)
 
 > ## Path
-> * In order to run all pipelines, absoulte path should be like "/home/usr_name/dir_name"
+> * In order to run all pipelines, absoulte path should be like */home/usr_name/dir_name*
