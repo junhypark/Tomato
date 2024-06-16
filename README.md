@@ -171,13 +171,7 @@ After finish running python code, you can view result mp4 named in ```result.mp4
 
 ---
 
-# 2. Motivation
-
-* 
-
----
-
-# 3. With Web
+# 2. With Web
 
 * You can run this all file after finishing setting local WSL env with Python file, except ```toamto-app```
 
@@ -191,7 +185,7 @@ Absolutely, you have to go to ```tomato-app``` via terminal
 
 ---
 
-## Running
+### 2-1. Running
 
 Set your terminal into proper folder path
 
@@ -209,11 +203,25 @@ It will automatically, run WSL and python file
 
 ![image](https://github.com/junhypark/Tomato/assets/58024443/50f0884e-6c4a-4144-8863-73c252fb2e8d)
 
+2. input "_.docx" file
 
----
+![image](https://github.com/junhypark/Tomato/assets/58024443/78fc0b96-a897-4ba2-a405-8ea9c820016b)
 
-## Path
+3. input "absolute path in WSL" and "conda env name"
 
-Although, the files are written in relative path, non-absolute path.
+ex)
 
-In order to run all pipelines, you have to change folder path into **your customized path in full path**
+![image](https://github.com/junhypark/Tomato/assets/58024443/ea7813b7-4645-4531-8d0a-99dc10d85d23)
+
+4. Wait until processing is end
+
+> When processing is finished, it automatically move to next step
+
+![image](https://github.com/junhypark/Tomato/assets/58024443/f888e453-915c-4391-a227-93a6484cc3a5)
+
+5. Click download button for result
+
+![image](https://github.com/junhypark/Tomato/assets/58024443/da8a15ec-dc87-46ee-9501-0a70f8511d62)
+
+> ## Path
+> * In order to run all pipelines, absoulte path should be like "/home/usr_name/dir_name"
