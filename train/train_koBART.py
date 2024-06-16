@@ -6,6 +6,7 @@ from transformers import DataCollatorForSeq2Seq
 from sklearn.model_selection import train_test_split
 import torch.nn as nn
 
+# Below codes are written by ourselves.
 tokenizer = PreTrainedTokenizerFast.from_pretrained('gogamza/kobart-base-v2')
 model = BartForConditionalGeneration.from_pretrained('gogamza/kobart-base-v2')
 

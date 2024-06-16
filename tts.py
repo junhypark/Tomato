@@ -3,8 +3,9 @@ from pydub import AudioSegment
 import math
 import re
 from moviepy.editor import VideoFileClip, AudioFileClip
-from transformers import PreTrainedTokenizerFast, BartForConditionalGeneration
+from transformers import PreTrainedTokenizerFast, BartForConditionalGeneration # model load from Huggingface's transformers
 
+# Below codes are written by ourselves.
 def decrease_volume(audio, db=10):
     quiter_audio = audio - db
 
@@ -58,7 +59,7 @@ def main(comment, fname, mp4, path):
     # comment = [{start, end, text}]
     tts_list = list()
 
-    device = "cuda:0" # or cpu
+    device = "cpu" # or cuda:0
     speed = 1.1
     model = TTS(language='KR', device=device)
     speaker_ids = model.hps.data.spk2id
@@ -73,7 +74,7 @@ def main(comment, fname, mp4, path):
         wav_path = path+"/comment" + str(cm["start"]) + ".wav"
 
         inputs = tokenizer(cm["text"], max_length=512, truncation=True, return_tensors="pt")
-        output_tokens = paraphrase_model.generate(inputs["input_ids"], max_length=256, num_beams=5, early_stopping=True)
+        output_tokens = paraphrase_model.generate(inputs["input_ids"], max_length=512, num_beams=5, early_stopping=True)
         revised_comment = tokenizer.decode(output_tokens[0], skip_special_tokens=True, clean_up_tokenization_spaces=True)
         revised_comment = re.sub(r'[\n\r\t]', r' ', revised_comment)
         revised_comment = re.sub(r' +', r' ', revised_comment)
