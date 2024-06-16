@@ -110,13 +110,13 @@ For more information please look at https://github.com/pyannote/pyannote-audio/r
 
 ## 1-4. MeloTTS
 
-We use the MeloTTS for Text to Speech task, so you should install MeloTTS
+We use the MeloTTS for Text to Speech task
 
 Please refer to the link below for download method
 
             https://github.com/myshell-ai/MeloTTS/blob/main/docs/install.md
 
-Before install MeloTTS library, you should install txtsplit-1.0.0. Please enter below command
+**Before install MeloTTS library, you should install txtsplit-1.0.0. Please enter below command**
 
             pip install txtsplit
 
@@ -127,15 +127,31 @@ Before install MeloTTS library, you should install txtsplit-1.0.0. Please enter 
 
 > Go to above link, and download ```txtsplit-1.0.0.tar.gz```. Unzip it, and put it to your working directory(tomato)
 
-When you enter the [txtsplit](https://github.com/junhypark/Tomato/tree/main/txtsplit-1.0.0) directory, you may see "setup.py". In the "txtsplit" folder, you enter below command
+In the [txtsplit](https://github.com/junhypark/Tomato/tree/main/txtsplit-1.0.0) directory, you may see ```setup.py```
+
+In the ```txtsplit``` folder, you enter below command in terminal
 
             pip install -e .
 
-Once you have installed the required dependent libraries, the txtsplit library will be installed. Please try it
+Once you have installed the required dependent libraries, the txtsplit library will be installed
 
 ---
 
-## 1-5. Additional Library
+## 1-5. Train KoBART
+
+To paraphrase movie scenario description, we fine-tune [KoBART](https://huggingface.co/gogamza/kobart-base-v2) pre-trained model
+
+We deployed fine-tuned model on [Google-Drive](https://drive.google.com/drive/folders/1VtR-CTfg2O8RCzLA52j2PZrrMu7rihBA?usp=drive_link)
+
+For fine-tunining the model with your data, the dataset information used to train the model is as follows
+- Columns : Original, Paraphrased
+- format of Dataset : "_.csv_"
+
+In the "Original" column, you have to put in original movie description, and the "Paraphrased" column, you have to put in paraphrased original movie description
+
+---
+
+## 1-6. Additional Library
 
 To run Tomato you have to install ```pydub```, ```moviepy```, and ```python-docx```
 
@@ -145,25 +161,10 @@ To run Tomato you have to install ```pydub```, ```moviepy```, and ```python-docx
 
             pip install python-docx
             
-After install all library you can run init.py
+After install all library you can run ```runconda.sh``` or ```run.sh```
 
 ---
 
-## 1-6. Train KoBART
-
-To paraphrase movie scenario description, we fine-tune KoBART(https://huggingface.co/gogamza/kobart-base-v2) pre-trained model. 
-
-We deployed fine-tuned model on Google-Drive
-
-            Google link
-
-For you to train the model with your data, the dataset information used to train the model is as follows.
-- Columns : Original, Paraphrased
-- format of Dataset : "_.csv_"
-
-In the "Original" column, you have to put in original movie description, and the "Paraphrased" column, you have to put in paraphrased original movie description. 
-
----
 ## 1-7. Result
 
 After finish running python code, you can view result mp4 named in ```result.mp4```
@@ -203,6 +204,11 @@ Set your terminal into proper folder path
             npm start
 
 It will automatically, run WSL and python file
+
+1. input "_.mp4" file
+
+![image](https://github.com/junhypark/Tomato/assets/58024443/50f0884e-6c4a-4144-8863-73c252fb2e8d)
+
 
 ---
 
