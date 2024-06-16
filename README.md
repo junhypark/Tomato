@@ -1,21 +1,22 @@
 # Tomato
-> TOMATO(auTOMAtic descripTiOn) is automatic barrier free movie making project using several AI model for blind people.
-> If you have any question, please use issues tab or contact us via: [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:jjuhee0913@gmail.com)](mailto:phjpurpleoob@gmail.com)
-> Please read carefully, all of these instructions.
+> TOMATO(auTOMAtic descripTiOn) is automatic barrier free movie making project using several AI model for blind people
+> Please read carefully, all of these instructions
+
+* If you have any question, please use issues tab or contact us via: [![Gmail Badge](https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:jjuhee0913@gmail.com)](mailto:phjpurpleoob@gmail.com)
 
 # 0. Instruction
 
-> If you want to make a barrier free movie, you should prepare  "_*.mp4_" file and "_*.docx_" file(which is movie scenario).
-> When movie and scenario file are prepared, you have to put your files in "input" folder.
-> Then, just run "run.sh" on the Linux OS. We recommend to use Ubuntu 20.04.  
+> * You should prepare  "_*.mp4_" file and "_*.docx_" file (which is movie scenario)
+> * When movie and scenario file are prepared, you have to put your files in "input" folder
+> * Then, just run "run.sh" on the Linux OS. We recommend to use Ubuntu 20.04
 
-* If you ran "run.sh", you will see the command line as below.
+* If you ran "run.sh", you will see the command line as below
 ![image](https://github.com/junhypark/Tomato/assets/164970413/2da79014-8802-449d-a946-03e020aa147f)
 
-And if your Python environment is set up correctly, you will convert the scenario and movie files into barrier-free movies correctly.
-(But this will take a so long time and computer resources to complete...)
+And if your Python environment is set up correctly, you will convert the scenario and movie files into barrier-free movies correctly
+(But this will take a long time and computer resources to complete)
 
-* If you are using ```Anaconda``` Environemnt, please install torch using conda, not pip command
+* If you are using ```Anaconda``` Environemnt, please install torch using **conda**, not pip command
 
 > If you already installed "torch, torchvision, torchaudio" via pip, please uninstall and download via conda
 
@@ -30,16 +31,19 @@ And if your Python environment is set up correctly, you will convert the scenari
 ---
 # 1. Models
 
+> **This pipeline is tested on WSL environment and anaconda**
+
 * environments: Ubuntu 20.04 LTS, Anaconda3 with 3.9.19 python version
 * Need: Memory about Higher than 16GB in CPU
----
-If you use conda virtual enviroment, please enter the below command.
+
+In conda virtual enviroment, please enter the below command
 
             conda create -n modelscope python=3.9
             conda activate modelscope
 
+---
 
-## 1-1. Speech to Text
+## 1-1. Whisper
 
 We used **whisper** model developed by **OpenAI** repectively, https://github.com/openai/whisper
 
@@ -67,26 +71,25 @@ If you need ```rust``` installed as well, please findout in the whisper github h
 
 ---
 
-## 1-2. ko-sentence-transformers
+## 1-2. KR-SBERT
 
 To install, use pip:
 
             pip install -U sentence-transformers
 
-For more information please look at https://github.com/jhgan00/ko-sentence-transformers
+For more information please look at https://huggingface.co/snunlp/KR-SBERT-V40K-klueNLI-augSTS
 
 they recommend **Python 3.8 or higher**, at least **PyTorch 1.11.0**, and **transformers 4.32.0 or higher**
 
-While using, there might be an error with ```ImportError: cannot import name 'get_full_repo_name' from 'huggingface_hub'```
-
-Please run this command
+> ### Handling Possible Error
+> * Via Anaconda Env, there might be an error with ```ImportError: cannot import name 'get_full_repo_name' from 'huggingface_hub'```
+> * Please run this command
 
             conda install chardet
 
-It will fix the ImportError
 ---
 
-## 1-3. pyannote
+## 1-3. Pyannote
 
 To install, use pip:
 
@@ -94,31 +97,41 @@ To install, use pip:
 
 In order to math same torch version, we used 2.1.1
 
+For more information please look at https://github.com/pyannote/pyannote-audio/releases/tag/2.1.1
+
+> For token key, use private pyannote token keys
+> * Follow this steps
+> 1. visit [pyannote.speaker-diarization](hf.co/pyannote/speaker-diarization) and accept user conditions
+> 2. visit [pyannote.segmentation](hf.co/pyannote/segmentation) and accept user conditions
+> 3. visit [your tokens](hf.co/settings/tokens) to create an access token
+> 4. instantiate pretrained speaker diarization pipeline
+> * From https://huggingface.co/pyannote/speaker-diarizationFrom 
 ---
 
 ## 1-4. MeloTTS
 
-We use the MeloTTS for Text to Speech task, so you should install MeloTTS. 
+We use the MeloTTS for Text to Speech task, so you should install MeloTTS
 
-Please refer to the link below for download method.
+Please refer to the link below for download method
 
             https://github.com/myshell-ai/MeloTTS/blob/main/docs/install.md
 
-Before install MeloTTS library, you should install txtsplit-1.0.0. Please enter below command.
+Before install MeloTTS library, you should install txtsplit-1.0.0. Please enter below command
 
             pip install txtsplit
 
-If "pip install txtsplit" is not working, you have to install manually.
+> ### Possible Error
+> If ```pip install txtsplit``` is not working, you have to install manually
 
             https://pypi.org/project/txtsplit/#files
 
-Go to above link, and download "txtsplit-1.0.0.tar.gz". Unzip it, and put it to your working directory(tomato).
+> Go to above link, and download ```txtsplit-1.0.0.tar.gz```. Unzip it, and put it to your working directory(tomato)
 
-When you enter the "txtsplit" directory, you may see "setup.py". In the "txtsplit" folder, you enter below command.
+When you enter the [txtsplit](/txtsplit) directory, you may see "setup.py". In the "txtsplit" folder, you enter below command
 
             pip install -e .
 
-Once you have installed the required dependent libraries, the txtsplit library will be installed. Please try it.
+Once you have installed the required dependent libraries, the txtsplit library will be installed. Please try it
 
 ---
 
