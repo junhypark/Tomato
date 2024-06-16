@@ -105,9 +105,9 @@ For more information please look at https://github.com/pyannote/pyannote-audio/r
 
 > For token key, use private pyannote token keys
 > * Follow this steps
-> 1. visit [pyannote.speaker-diarization](hf.co/pyannote/speaker-diarization) and accept user conditions
-> 2. visit [pyannote.segmentation](hf.co/pyannote/segmentation) and accept user conditions
-> 3. visit [your tokens](hf.co/settings/tokens) to create an access token
+> 1. visit [pyannote.speaker-diarization](https://huggingface.co/pyannote/speaker-diarization) and accept user conditions
+> 2. visit [pyannote.segmentation](https://huggingface.co/pyannote/segmentation) and accept user conditions
+> 3. visit [your tokens](https://huggingface.co/settings/tokens) to create an access token
 > 4. instantiate pretrained speaker diarization pipeline
 > * From https://huggingface.co/pyannote/speaker-diarizationFrom 
 ---
@@ -154,10 +154,10 @@ For fine-tunining the model with your data, the dataset information used to trai
 In the **Original** column, you have to put in original movie description, and the **Paraphrased** column, you have to put in paraphrased original movie description
 
 > ### Data
-> * [Example data](https://github.com/junhypark/Tomato/blob/main/train/data/trainsample.csv) is in **/train/data**
+> * [Example data](https://github.com/junhypark/Tomato/blob/main/train/data/train_sample.csv) is in **/train/data**
 
 > ### Fine-tuning
-> * Please change [trainkoBART.py](https://github.com/junhypark/Tomato/blob/main/train/trainkoBART.py) into your data
+> * Please change [train_koBART.py](https://github.com/junhypark/Tomato/blob/main/train/train_koBART.py) into your data
 > * The data type is **.csv**
 
             ...
