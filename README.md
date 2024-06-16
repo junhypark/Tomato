@@ -11,6 +11,7 @@
 > * Then, just run "run.sh" or "runconda.sh" on the Linux OS. We recommend to use Ubuntu 20.04
 
 * If you ran "run.sh", you will see the command line as below
+* NOTICE! activate correct conda environment before executing "run.sh"
 
 ![image](https://github.com/junhypark/Tomato/assets/58024443/ee6fd60a-851d-4e03-967a-98711a6363d1)
 
