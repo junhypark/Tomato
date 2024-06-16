@@ -6,7 +6,7 @@
 
 # 0. Instruction
 
-> * You should prepare  *_.mp4_* file and *_.docx_* file (which is movie scenario)
+> * You should prepare  *.mp4* file and *.docx* file (which is movie scenario)
 > * When movie and scenario file are prepared, you have to put your files in *input* folder
 > * Then, just run *run.sh* or *runconda.sh* on the Linux OS. We recommend to use Ubuntu 20.04
 
@@ -86,7 +86,7 @@ For more information please look at https://huggingface.co/snunlp/KR-SBERT-V40K-
 they recommend **Python 3.8 or higher**, at least **PyTorch 1.11.0**, and **transformers 4.32.0 or higher**
 
 > ### Handling Possible Error
-> * Via Anaconda Env, there might be an error with ```ImportError: cannot import name 'get_full_repo_name' from 'huggingface_hub'```
+> * Via Anaconda Env, there might be an error with ```ImportError: cannot import name 'getfullreponame' from 'huggingfacehub'```
 > * Please run this command
 
             conda install chardet
@@ -145,31 +145,31 @@ Once you have installed the required dependent libraries, the txtsplit library w
 
 To paraphrase movie scenario description, we fine-tune [KoBART](https://huggingface.co/gogamza/kobart-base-v2) pre-trained model
 
-We deployed fine-tuned model on [Google-Drive](https://drive.google.com/drive/folders/1VtR-CTfg2O8RCzLA52j2PZrrMu7rihBA?usp=drive_link)
+We deployed fine-tuned model on [Google-Drive](https://drive.google.com/drive/folders/1VtR-CTfg2O8RCzLA52j2PZrrMu7rihBA?usp=drivelink)
 
 For fine-tunining the model with your data, the dataset information used to train the model is as follows
 - Columns : Original, Paraphrased
-- format of Dataset : *_.csv_*
+- format of Dataset : *.csv*
 
 In the *Original* column, you have to put in original movie description, and the *Paraphrased* column, you have to put in paraphrased original movie description
 
 > ### Data
-> * [Example data](https://github.com/junhypark/Tomato/blob/main/train/data/train_sample.csv) is in */train/data*
+> * [Example data](https://github.com/junhypark/Tomato/blob/main/train/data/trainsample.csv) is in */train/data*
 
 > ### Fine-tuning
-> * Please change [train_koBART.py](https://github.com/junhypark/Tomato/blob/main/train/train_koBART.py) into your data
-> * The data type is *_.csv*
+> * Please change [trainkoBART.py](https://github.com/junhypark/Tomato/blob/main/train/trainkoBART.py) into your data
+> * The data type is *.csv*
 
             ...
             def main():
-                data_path = "YOUR_DATA_FILE_PATH"
+                datapath = "YOURDATAFILEPATH"
             ...
 
 > * For example
 
             ...
             def main():
-                data_path = "./my_data/train.csv"
+                datapath = "./mydata/train.csv"
             ...
             
 ---
@@ -222,11 +222,11 @@ Set your terminal into proper folder path
 
 It will automatically, run WSL and python file
 
-1. input *_.mp4* file
+1. input *.mp4* file
 
 ![image](https://github.com/junhypark/Tomato/assets/58024443/50f0884e-6c4a-4144-8863-73c252fb2e8d)
 
-2. input *_.docx* file
+2. input *.docx* file
 
 ![image](https://github.com/junhypark/Tomato/assets/58024443/78fc0b96-a897-4ba2-a405-8ea9c820016b)
 
@@ -247,4 +247,4 @@ ex)
 ![image](https://github.com/junhypark/Tomato/assets/58024443/da8a15ec-dc87-46ee-9501-0a70f8511d62)
 
 > ## Path
-> * In order to run all pipelines, absoulte path should be like */home/usr_name/dir_name*
+> * In order to run all pipelines, absoulte path should be like */home/usrname/dirname*
