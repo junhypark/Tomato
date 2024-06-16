@@ -127,7 +127,7 @@ Before install MeloTTS library, you should install txtsplit-1.0.0. Please enter 
 
 > Go to above link, and download ```txtsplit-1.0.0.tar.gz```. Unzip it, and put it to your working directory(tomato)
 
-When you enter the [txtsplit](/txtsplit) directory, you may see "setup.py". In the "txtsplit" folder, you enter below command
+When you enter the [txtsplit](https://github.com/junhypark/Tomato/tree/main/txtsplit-1.0.0) directory, you may see "setup.py". In the "txtsplit" folder, you enter below command
 
             pip install -e .
 
