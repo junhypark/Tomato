@@ -86,7 +86,7 @@ To install, use pip:
 
             pip install -U sentence-transformers
 
-For more information please look at https://huggingface.co/snunlp/KR-SBERT-V40K-klueNLI-augSTS
+For more information please look at https://huggingface.co/jhgan/ko-sbert-sts
 
 they recommend **Python 3.8 or higher**, at least **PyTorch 1.11.0**, and **transformers 4.32.0 or higher**
 
