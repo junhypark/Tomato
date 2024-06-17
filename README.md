@@ -50,6 +50,11 @@ In conda virtual enviroment, please enter the below command
             conda create -n modelscope python=3.9
             conda activate modelscope
 
+### Sample Data
+
+> Sample input data is on [gdrive](https://drive.google.com/drive/folders/1wI-GRdFcFO4lJnyJNsac2zU2YFBVp1FD?usp=sharing)
+> * sample_input.mp4: sample video input
+> * sample_docx.docx: sample docx input
 ---
 
 ## 1-1. Whisper
