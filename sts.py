@@ -235,7 +235,7 @@ def filter_non_consecutive_scenes(results):
     return filtered_results
 
 def main(scenario_text, movie_dialogue_text):
-    model = SentenceTransformer('snunlp/KR-SBERT-V40K-klueNLI-augSTS')  # From Web
+    model = SentenceTransformer('jhgan/ko-sroberta-multitask')  # From Web
 
     scenes = parse_scenario(scenario_text)
     movie_dialogues = parse_movie_dialogues(movie_dialogue_text)
