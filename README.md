@@ -32,6 +32,11 @@ And if your Python environment is set up correctly, you will convert the scenari
 
 ![image](https://github.com/junhypark/Tomato/assets/58024443/fa7324b4-2c7d-4090-af24-1677de5583a1)
 
+> ### Possible Error
+> * If you copied files from **Windows** to **Ubuntu**
+
+            sed -i 's/\r$//' FILE_NAME
+
 ---
 # 1. Models
 
@@ -116,6 +121,10 @@ For more information please look at https://github.com/pyannote/pyannote-audio/r
 
 We use the MeloTTS for Text to Speech task
 
+1. ```transforemrs``` version is **4.27.4**
+2. ```sentence-transforemrs``` version is **3.0.0**
+3. ```boto3, botocore``` versions are **1.34.120** and **1.34.120**
+
 Please refer to the link below for download method
 
             https://github.com/myshell-ai/MeloTTS/blob/main/docs/install.md
@@ -139,6 +148,22 @@ In the ```txtsplit``` folder, you enter below command in terminal
 
 Once you have installed the required dependent libraries, the txtsplit library will be installed
 
+> ### Possible Error
+> If version error occurs, please follow this instruction
+> * ```transformers```
+
+            pip uninstall transformers
+            pip install transformers==4.27.4
+
+> * ```sentence-transforemrs```
+
+            pip uninstall sentence-transformers
+            pip install sentence-transformers==3.0.0
+
+> * ```boto3, botocore```
+
+            pip uninstall boto3 botocore
+            pip install boto3==1.34.120 botocore==1.34.120
 ---
 
 ## 1-5. Train KoBART
