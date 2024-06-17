@@ -80,7 +80,7 @@ If you need ```rust``` installed as well, please findout in the whisper github h
 
 ---
 
-## 1-2. KR-SBERT
+## 1-2. Ko-SBERT
 
 To install, use pip:
 
