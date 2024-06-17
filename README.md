@@ -177,6 +177,8 @@ To paraphrase movie scenario description, we fine-tune [KoBART](https://huggingf
 
 We deployed fine-tuned model on [Google-Drive](https://drive.google.com/drive/folders/1VtR-CTfg2O8RCzLA52j2PZrrMu7rihBA?usp=drivelink)
 
+> Please put files into [/train/model](https://github.com/junhypark/Tomato/tree/main/train/model)
+
 For fine-tunining the model with your data, the dataset information used to train the model is as follows
 - Columns : Original, Paraphrased
 - format of Dataset : **.csv**
