@@ -3,7 +3,7 @@ from pydub import AudioSegment
 import math
 
 pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization@2.1",
-                                    use_auth_token="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") # From Web, Huggingface Token is private, Do not share with other people
+                                    use_auth_token="your_huggingface_token") # From Web, Huggingface Token is private, Do not share with other people
 
 def main(fname, root):
     global pipeline
